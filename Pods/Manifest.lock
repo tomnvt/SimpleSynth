@@ -1,0 +1,15 @@
+PODS:
+  - MusicTheorySwift (0.1)
+  - PianoView (0.0.1):
+    - MusicTheorySwift
+
+DEPENDENCIES:
+  - PianoView
+
+SPEC CHECKSUMS:
+  MusicTheorySwift: 9e7f1bf66904190f82b34b9d36e09e296dde438b
+  PianoView: f234ac44b5cdd043a0e140cbbf84a95e4660865b
+
+PODFILE CHECKSUM: 6d91bfdd37f686fc402b052f8b7ddd524fbfea1f
+
+COCOAPODS: 1.4.0

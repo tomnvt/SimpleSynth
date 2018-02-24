@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E30479F59BE98249548F8A1 /* Pods_SimpleSynth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E7507851A7BB95211CD81C /* Pods_SimpleSynth.framework */; };
 		E3295DD12042050D008E2D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3295DD02042050D008E2D18 /* AppDelegate.swift */; };
 		E3295DD32042050D008E2D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3295DD22042050D008E2D18 /* ViewController.swift */; };
 		E3295DD62042050D008E2D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD42042050D008E2D18 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77E7507851A7BB95211CD81C /* Pods_SimpleSynth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleSynth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A50BD8919AF2674590DC7C3 /* Pods-SimpleSynth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleSynth.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleSynth/Pods-SimpleSynth.release.xcconfig"; sourceTree = "<group>"; };
+		D50E0609136D1B4C3AA55E9D /* Pods-SimpleSynth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleSynth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleSynth/Pods-SimpleSynth.debug.xcconfig"; sourceTree = "<group>"; };
 		E3295DCD2042050D008E2D18 /* SimpleSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3295DD02042050D008E2D18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3295DD22042050D008E2D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E30479F59BE98249548F8A1 /* Pods_SimpleSynth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FC799AAD4CD5F573FD3C3D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D50E0609136D1B4C3AA55E9D /* Pods-SimpleSynth.debug.xcconfig */,
+				7A50BD8919AF2674590DC7C3 /* Pods-SimpleSynth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E3295DC42042050D008E2D18 = {
 			isa = PBXGroup;
 			children = (
 				E3295DCF2042050D008E2D18 /* SimpleSynth */,
 				E3295DCE2042050D008E2D18 /* Products */,
+				2FC799AAD4CD5F573FD3C3D9 /* Pods */,
+				F0175F5A4BDE67BB763CB8D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = SimpleSynth;
 			sourceTree = "<group>";
 		};
+		F0175F5A4BDE67BB763CB8D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77E7507851A7BB95211CD81C /* Pods_SimpleSynth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3295DDF2042050D008E2D18 /* Build configuration list for PBXNativeTarget "SimpleSynth" */;
 			buildPhases = (
+				E215A849EC494121AB19F18B /* [CP] Check Pods Manifest.lock */,
 				E3295DC92042050D008E2D18 /* Sources */,
 				E3295DCA2042050D008E2D18 /* Frameworks */,
 				E3295DCB2042050D008E2D18 /* Resources */,
+				739C5EE9B411A0D68ECD7A1D /* [CP] Embed Pods Frameworks */,
+				882DD052CCC68985AF1FF886 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		739C5EE9B411A0D68ECD7A1D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleSynth/Pods-SimpleSynth-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MusicTheorySwift/MusicTheorySwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PianoView/PianoView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MusicTheorySwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PianoView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleSynth/Pods-SimpleSynth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		882DD052CCC68985AF1FF886 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleSynth/Pods-SimpleSynth-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E215A849EC494121AB19F18B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleSynth-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E3295DC92042050D008E2D18 /* Sources */ = {
@@ -272,9 +355,11 @@
 		};
 		E3295DE02042050D008E2D18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50E0609136D1B4C3AA55E9D /* Pods-SimpleSynth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6YGCZBGEPH;
 				INFOPLIST_FILE = SimpleSynth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nvapps.SimpleSynth;
@@ -286,9 +371,11 @@
 		};
 		E3295DE12042050D008E2D18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A50BD8919AF2674590DC7C3 /* Pods-SimpleSynth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6YGCZBGEPH;
 				INFOPLIST_FILE = SimpleSynth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nvapps.SimpleSynth;

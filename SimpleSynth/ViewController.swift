@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import PianoView
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var pianoView: PianoView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

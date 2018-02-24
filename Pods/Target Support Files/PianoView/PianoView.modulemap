@@ -1,0 +1,6 @@
+framework module PianoView {
+  umbrella header "PianoView-umbrella.h"
+
+  export *
+  module * { export * }
+}
