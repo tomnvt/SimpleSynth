@@ -12,17 +12,18 @@ import PianoView
 class ViewController: UIViewController {
 
     @IBOutlet weak var pianoView: PianoView!
+    @IBOutlet weak var noteLabel: UILabel!
+    
+    let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func keyButtonPressed(_ sender: UIButton) {
+        print("Key number \(sender.tag) pressed!")
+        noteLabel.text = notes[sender.tag]
     }
-
-
+    
 }
 
