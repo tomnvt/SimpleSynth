@@ -21,8 +21,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyButtonPressed(_ sender: UIButton) {
-        print("Key number \(sender.tag) pressed!")
-        noteLabel.text = notes[sender.tag]
+        noteLabel.text = "\(notes[sender.tag]) pressed"
+    }
+    
+    
+    @IBAction func keyButtonReleased(_ sender: UIButton) {
+        noteLabel.text = "\(notes[sender.tag]) released"
     }
     
 }

@@ -29,6 +29,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="drF-Dt-Atg"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Yi-K2-TZv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lhl-ft-5un">
@@ -38,6 +39,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="qvP-P2-IlS"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uTk-HP-TKw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoZ-Ir-r9M">
@@ -47,6 +49,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="fDZ-mh-yyK"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nIg-DL-Rk0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uep-g7-dMu">
@@ -56,6 +59,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Fvn-08-MiR"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vlM-97-HXz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8o-dd-X4z">
@@ -65,6 +69,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="X8t-GE-BEK"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YUx-k6-DH1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaW-Vo-g5c">
@@ -74,6 +79,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="T04-GU-82V"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vmx-ts-62s"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Jh-fq-one">
@@ -83,6 +89,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="UZJ-S3-RXr"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gml-Ud-fTE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sca-dK-2pC">
@@ -92,6 +99,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="GfS-2Q-Id5"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UGR-zv-vtL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghK-NB-4Dy">
@@ -101,6 +109,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="lSL-Ut-5ZS"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aid-7v-gc1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvv-j4-TZI">
@@ -110,6 +119,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="uw1-R3-R7W"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dIM-VT-2ez"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekL-Iv-qCJ">
@@ -128,6 +138,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="jy1-1z-DfK"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6lU-26-vvP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHm-tq-5Zo">
@@ -137,6 +148,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mRz-17-hGf"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bgm-u1-0hp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agf-Az-YsE">
@@ -146,6 +158,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="hBK-n2-60h"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZZ-Ea-MLH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mb-Tb-NNa">
@@ -155,6 +168,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="lUf-U6-Wct"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q6x-9z-3Gj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzP-ch-Wu5">
@@ -167,6 +181,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="9P7-rk-GBr"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rjh-oU-i1D"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xue-PH-umC">
@@ -179,6 +194,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VKX-rl-INt"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lFI-tc-wlt"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUB-1t-OQh">
@@ -191,6 +207,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="ukT-Uw-v3g"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cTp-ro-NF3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vhp-W0-h5T">
@@ -203,6 +220,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="fcx-q2-XpO"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MtU-PB-eFb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SR-yW-AL3">
@@ -215,6 +233,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="XXc-kQ-rhb"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LVB-x0-Ekp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5k-lU-Ulh">
@@ -227,6 +246,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Ltn-Vb-eJQ"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y6h-sr-006"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-5I-gxg">
@@ -239,6 +259,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="9hg-5b-EPK"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iru-a7-CeZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAq-kN-tM1">
@@ -251,6 +272,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="A3E-Ul-oSY"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="imh-J7-X4B"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJd-eq-qkX">
@@ -263,6 +285,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="MYj-55-Tbu"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PZw-gW-hna"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-qE-UWY">
@@ -275,6 +298,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="TsP-fB-dfM"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g9G-cy-iVB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vd2-m3-ei5">
@@ -285,6 +309,7 @@
                                         <state key="normal" title="C1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="zHv-QA-Hzq"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fTB-gc-qPJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zod-DM-uRW">
@@ -292,6 +317,7 @@
                                         <state key="normal" title="E1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="MeC-9D-ocl"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vuG-zy-sCq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mu0-WM-gVn">
@@ -299,6 +325,7 @@
                                         <state key="normal" title="F1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="LhG-xb-U60"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jwj-vE-7eo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSY-6b-cFQ">
@@ -309,6 +336,7 @@
                                         <state key="normal" title="B1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="e96-WX-mZH"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IQI-9R-r2A"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhh-7V-RWE">
@@ -319,9 +347,10 @@
                                         <state key="normal" title="C2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="n2U-kJ-OPJ"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B5c-XU-WBf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-zK-DbU">
+                                    <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-zK-DbU">
                                         <rect key="frame" x="453" y="0.0" width="36" height="155"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="zlV-VY-thD"/>
@@ -329,9 +358,10 @@
                                         <state key="normal" title="E2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="gSC-NZ-vj8"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7QG-AI-jPM"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcB-ha-weK">
+                                    <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcB-ha-weK">
                                         <rect key="frame" x="489" y="0.0" width="36" height="155"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="38" id="7ds-81-7P1"/>
@@ -339,6 +369,7 @@
                                         <state key="normal" title="F2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="BAp-ck-8GV"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZRk-Bx-k2Z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aQ-EW-26n">
@@ -349,6 +380,7 @@
                                         <state key="normal" title="B2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Rdw-Xo-gAT"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ixP-OP-Dxs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-4N-CJv">
@@ -356,6 +388,7 @@
                                         <state key="normal" title="C3"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="ake-cf-sr9"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hGD-Wi-aGE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bk-2h-fLM">
@@ -366,6 +399,7 @@
                                         <state key="normal" title="D1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="l9E-xy-st2"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fkG-cF-h4L"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5R-Jn-1Eh">
@@ -376,6 +410,7 @@
                                         <state key="normal" title="G1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Rny-qH-EZP"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dw3-04-Bso"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SC-ZC-th2">
@@ -386,6 +421,7 @@
                                         <state key="normal" title="A1"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="WZh-wn-dMv"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hvm-tS-qQ4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wut-Kh-X3w">
@@ -396,6 +432,7 @@
                                         <state key="normal" title="D2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="CbJ-aO-iSl"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cri-JP-eeS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcK-JL-PpL">
@@ -406,6 +443,7 @@
                                         <state key="normal" title="G2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Hx5-Ca-Suw"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dLc-YQ-Wad"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDn-d0-OvZ">
@@ -416,6 +454,7 @@
                                         <state key="normal" title="A2"/>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="9S3-dA-di6"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yuR-Ey-amg"/>
                                         </connections>
                                     </button>
                                 </subviews>
