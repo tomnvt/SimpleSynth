@@ -270,7 +270,7 @@ public class PianoKeyLayer: CALayer {
         string: text,
         attributes: [
             NSAttributedStringKey.foregroundColor: textColor,
-            NSAttributedStringKey.font: font
+          NSAttributedStringKey.font: font
         ])
 
       #if os(OSX)

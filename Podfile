@@ -6,6 +6,7 @@ target 'SimpleSynth' do
   use_frameworks!
 
   # Pods for SimpleSynth
+pod 'AudioKit'
 pod 'PianoView'
 
 post_install do |installer|

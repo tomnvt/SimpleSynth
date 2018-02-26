@@ -129,6 +129,7 @@
                                         </state>
                                         <connections>
                                             <action selector="keyButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="ZZa-8I-cDn"/>
+                                            <action selector="keyButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T8j-Xh-vuZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKk-hM-vfc">
