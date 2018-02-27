@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6r-kd-b8i" customClass="PianoView" customModule="PianoView">
-                                <rect key="frame" x="0.0" y="149" width="736" height="265"/>
+                                <rect key="frame" x="0.0" y="149" width="734" height="265"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3b-O0-uCl">
                                         <rect key="frame" x="-1" y="155" width="49" height="110"/>
@@ -618,22 +618,33 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I69-qH-lNK">
-                                <rect key="frame" x="0.0" y="0.0" width="736" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="734" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWM-Vb-32f">
-                                        <rect key="frame" x="0.0" y="0.0" width="736" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="734" height="150"/>
                                         <string key="text">NOTE
 eEeE</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T2-uo-64z">
+                                        <rect key="frame" x="0.0" y="59" width="133" height="91"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.93333333330000001" green="0.83921568629999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="133" id="YHm-p1-8Vd"/>
+                                        </constraints>
+                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="leading" secondItem="yWM-Vb-32f" secondAttribute="leading" id="HbP-IT-6EJ"/>
                                     <constraint firstItem="yWM-Vb-32f" firstAttribute="top" secondItem="I69-qH-lNK" secondAttribute="top" id="joI-03-ty8"/>
                                     <constraint firstAttribute="trailing" secondItem="yWM-Vb-32f" secondAttribute="trailing" id="l4W-0B-AFG"/>
                                     <constraint firstAttribute="bottom" secondItem="yWM-Vb-32f" secondAttribute="bottom" id="rsh-AT-dau"/>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="bottom" secondItem="yWM-Vb-32f" secondAttribute="bottom" id="sar-Sy-Opc"/>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="top" secondItem="I69-qH-lNK" secondAttribute="top" constant="59" id="vXr-9C-gCN"/>
                                     <constraint firstItem="yWM-Vb-32f" firstAttribute="leading" secondItem="I69-qH-lNK" secondAttribute="leading" id="yjO-6y-IWt"/>
                                 </constraints>
                             </view>
@@ -654,6 +665,7 @@ eEeE</string>
                     <connections>
                         <outlet property="noteLabel" destination="yWM-Vb-32f" id="Jv7-hB-oqF"/>
                         <outlet property="pianoView" destination="r6r-kd-b8i" id="qDm-mY-TkR"/>
+                        <outlet property="wave1Picker" destination="2T2-uo-64z" id="PRj-3H-zn1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
