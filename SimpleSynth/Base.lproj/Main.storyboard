@@ -21,15 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I69-qH-lNK" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="271"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWM-Vb-32f">
-                                        <rect key="frame" x="0.0" y="0.0" width="736" height="203"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <string key="text">NOTE
-eEeE</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2T2-uo-64z">
                                         <rect key="frame" x="0.0" y="59" width="133" height="91"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,6 +29,22 @@ eEeE</string>
                                             <constraint firstAttribute="width" constant="133" id="YHm-p1-8Vd"/>
                                         </constraints>
                                     </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-mv-MoB">
+                                        <rect key="frame" x="141" y="59" width="118" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Monophonic"/>
+                                        <connections>
+                                            <action selector="monophonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="XYb-hg-jCA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
+                                        <rect key="frame" x="141" y="97" width="118" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Polyphonic"/>
+                                        <connections>
+                                            <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -61,7 +68,8 @@ eEeE</string>
                     </view>
                     <connections>
                         <outlet property="keyboardView" destination="cro-P7-y2d" id="FK1-d4-2ti"/>
-                        <outlet property="noteLabel" destination="yWM-Vb-32f" id="Jv7-hB-oqF"/>
+                        <outlet property="monophonicButton" destination="d3Z-mv-MoB" id="FTK-hR-bcl"/>
+                        <outlet property="polyphonicButton" destination="buS-4T-Ols" id="hWs-uB-2h4"/>
                         <outlet property="wave1Picker" destination="2T2-uo-64z" id="PRj-3H-zn1"/>
                     </connections>
                 </viewController>

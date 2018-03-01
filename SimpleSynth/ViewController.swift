@@ -13,34 +13,37 @@ import AudioKitUI
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
 
-    @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var wave1Picker: UIPickerView!
     @IBOutlet weak var keyboardView: UIView!
+    @IBOutlet weak var monophonicButton: UIButton!
+    @IBOutlet weak var polyphonicButton: UIButton!
     
     var currentMIDINote: MIDINoteNumber = 0
     
-    var oscillator : AKOscillator?
+    var keyboard = AKKeyboardView()
+    
+    var bank = AKOscillatorBank(waveform: AKTable(.square),
+                                attackDuration: 0.1,
+                                releaseDuration: 0.1)
     
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
     
-    let waveforms = [AKTable(.square, count: 256), AKTable(.triangle, count: 256), AKTable(.sine, count: 256), AKTable(.sawtooth, count: 256)]
+    let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
     let waveformNames = ["square", "triangle", "sine", "sawtooth"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setOscillator(waveformIndex: 0)
-        
+        AudioKit.output = bank
+
         AudioKit.start()
         
-        AudioKit.output = oscillator
-
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
-        let keyboard = AKKeyboardView(width: Int(keyboardView.frame.size.width), height: Int(keyboardView.frame.size.height), firstOctave: 3, octaveCount: 2)
+        keyboard = AKKeyboardView(width: Int(keyboardView.frame.size.width), height: Int(keyboardView.frame.size.height), firstOctave: 3, octaveCount: 2)
         keyboard.delegate = self
         keyboardView.addSubview(keyboard)
         
@@ -64,33 +67,30 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        setOscillator(waveformIndex: row)
+        setWaveform(waveformIndex: row)
     }
+    
     func noteOn(note: MIDINoteNumber) {
-        currentMIDINote = note
-        if oscillator?.amplitude == 0 {
-            oscillator?.rampTime = 0
-        }
-        oscillator?.frequency = note.midiNoteToFrequency()
-        
-        oscillator?.rampTime = currentRampTime
-        oscillator?.amplitude = currentAmplitude
-        oscillator?.play()
+        bank.play(noteNumber: note, velocity: 80)
     }
     
     func noteOff(note: MIDINoteNumber) {
-        if currentMIDINote == note {
-            oscillator?.amplitude = 0
-        }
+        bank.stop(noteNumber: note)
     }
     
-    func setOscillator(waveformIndex: Int) {
-        oscillator = AKOscillator(waveform: waveforms[waveformIndex])
-        AudioKit.output = oscillator
-        oscillator?.rampTime = 0.2
-        oscillator?.amplitude = 0.05
+    func setWaveform(waveformIndex: Int) {
+        bank = AKOscillatorBank(waveform: waveforms[waveformIndex])
+        AudioKit.output = bank
+
+        AudioKit.start()
     }
     
+    @IBAction func monophonicButtonPressed(_ sender: UIButton) {
+        keyboard.polyphonicMode = false
+    }
+    @IBAction func polyphonicButtonPressed(_ sender: UIButton) {
+        keyboard.polyphonicMode = true
+    }
     
 }
 
