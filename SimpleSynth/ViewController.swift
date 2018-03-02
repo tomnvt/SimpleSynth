@@ -26,6 +26,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 attackDuration: 0.1,
                                 releaseDuration: 0.1)
     
+    var filter = AKKorgLowPassFilter()
+    
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
     
@@ -36,16 +38,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AudioKit.output = bank
-
-        AudioKit.start()
-        
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
         keyboard = AKKeyboardView(width: Int(keyboardView.frame.size.width), height: Int(keyboardView.frame.size.height), firstOctave: 3, octaveCount: 2)
         keyboard.delegate = self
         keyboardView.addSubview(keyboard)
+        
+        filter = AKKorgLowPassFilter(bank)
+        filter.cutoffFrequency = 500
+        filter.play()
+        
+        AudioKit.output = filter
+        
+        AudioKit.start()
         
     }
     
@@ -80,7 +86,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func setWaveform(waveformIndex: Int) {
         bank = AKOscillatorBank(waveform: waveforms[waveformIndex])
-        AudioKit.output = bank
+        AudioKit.output = filter
 
         AudioKit.start()
     }
