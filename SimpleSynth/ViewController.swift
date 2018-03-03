@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
@@ -57,32 +59,44 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         AudioKit.start()
         
-        filterSlider = AKSlider(property: "Low Pass Cutoff", value: filter.cutoffFrequency, range: 20 ... 20000, taper: 5, format: "%0.1f Hz", frame: CGRect(x: self.view.frame.size.width/2, y: 20, width: (self.view.frame.size.width / 2) - 10, height: 50))  { sliderValue in self.filter.cutoffFrequency = sliderValue }
+        filterSlider = AKSlider(property: "Low Pass Cutoff",
+                                value: filter.cutoffFrequency,
+                                range: 20 ... 20000,
+                                taper: 5,
+                                format: "%0.1f Hz",
+                                frame: CGRect(x: self.view.frame.size.width/2,
+                                              y: ((self.view.frame.size.height / 10) * 0 + self.view.frame.size.height / 20),
+                                              width: (self.view.frame.size.width / 2) - 10,
+                                              height: 50))
+        { sliderValue in self.filter.cutoffFrequency = sliderValue }
 
         self.view.addSubview(filterSlider)
         
         monophonicButton.backgroundColor = UIColor.cyan
         monophonicButton.setTitleColor(UIColor.black, for: .normal)
+        monophonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
         polyphonicButton.backgroundColor = UIColor.cyan
         polyphonicButton.setTitleColor(UIColor.black, for: .normal)
+        polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        
         
         monophonicButton.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo(30)
-            make.height.equalTo(20)
-            make.width.equalTo(150)
+            make.topMargin.equalTo((self.view.frame.size.height / 10) * 0 + self.view.frame.size.height / 20)
+            make.height.equalTo(self.view.frame.size.height / 10)
+            make.width.equalTo(self.view.frame.size.width / 6)
         })
         
         polyphonicButton.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo(50)
-            make.height.equalTo(20)
-            make.width.equalTo(150)
+            make.topMargin.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 20)
+            make.height.equalTo(self.view.frame.size.height / 10)
+            make.width.equalTo(self.view.frame.size.width / 6)
         })
 
         wave1Picker.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo(70)
-            make.height.equalTo(150)
-            make.width.equalTo(150)
+            make.topMargin.equalTo((self.view.frame.size.height / 10) * 2 + self.view.frame.size.height / 20)
+            make.height.equalTo((self.view.frame.size.height / 10)*3)
+            make.width.equalTo(self.view.frame.size.width / 6)
         })
         
         filter.play()
@@ -108,6 +122,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         setWaveform(waveformIndex: row)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label = view as! UILabel!
+        if label == nil {
+            label = UILabel()
+        }
+        
+        label?.font = UIFont.systemFont(ofSize: self.view.frame.size.width / 45)
+        label?.text =  waveformNames[row]
+        label?.textColor = UIColor.white
+        label?.textAlignment = .center
+        return label!
     }
     
     func noteOn(note: MIDINoteNumber) {
