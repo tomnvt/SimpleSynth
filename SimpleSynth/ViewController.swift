@@ -17,6 +17,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var wave1Picker: UIPickerView!
     @IBOutlet weak var monophonicButton: UIButton!
     @IBOutlet weak var polyphonicButton: UIButton!
+    @IBOutlet weak var octaveDown: UIButton!
+    @IBOutlet weak var octaveUp: UIButton!
     
     var currentMIDINote: MIDINoteNumber = 0
     
@@ -25,6 +27,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var bank = AKOscillatorBank(waveform: AKTable(.square),
                                 attackDuration: 0.1,
                                 releaseDuration: 0.1)
+    
+    var octave = 3
     
     var filter = AKKorgLowPassFilter()
     var filterSlider = AKSlider(property: "Cutoff Frequency")
@@ -44,7 +48,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
-        keyboard = AKKeyboardView(width: Int(self.view.frame.size.width), height: Int(self.view.frame.size.height)/3, firstOctave: 3, octaveCount: 2)
+        keyboard = AKKeyboardView(width: Int(self.view.frame.size.width),
+                                  height: Int(self.view.frame.size.height)/3,
+                                  firstOctave: octave,
+                                  octaveCount: 2)
         keyboard.delegate = self
         self.view.addSubview(keyboard)
         keyboard.snp.makeConstraints( { (make) -> Void in
@@ -80,7 +87,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         polyphonicButton.setTitleColor(UIColor.black, for: .normal)
         polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
-        
         monophonicButton.snp.makeConstraints( { (make) -> Void in
             make.topMargin.equalTo((self.view.frame.size.height / 10) * 0 + self.view.frame.size.height / 20)
             make.height.equalTo(self.view.frame.size.height / 10)
@@ -97,6 +103,27 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.topMargin.equalTo((self.view.frame.size.height / 10) * 2 + self.view.frame.size.height / 20)
             make.height.equalTo((self.view.frame.size.height / 10)*3)
             make.width.equalTo(self.view.frame.size.width / 6)
+        })
+    
+        octaveDown.backgroundColor = UIColor.cyan
+        octaveDown.setTitleColor(UIColor.black, for: .normal)
+        octaveDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        
+        octaveDown.snp.makeConstraints( { (make) -> Void in
+            make.topMargin.equalTo((self.view.frame.size.height / 10) * 5 + self.view.frame.size.height / 20)
+            make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
+            make.width.equalTo(self.view.frame.size.width / 12)
+        })
+        
+        octaveUp.backgroundColor = UIColor.cyan
+        octaveUp.setTitleColor(UIColor.black, for: .normal)
+        octaveUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        
+        octaveUp.snp.makeConstraints( { (make) -> Void in
+            make.topMargin.equalTo((self.view.frame.size.height / 10) * 5 + self.view.frame.size.height / 20)
+            make.leftMargin.equalTo(self.view.frame.size.width / 12)
+            make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
+            make.width.equalTo(self.view.frame.size.width / 12)
         })
         
         filter.play()
