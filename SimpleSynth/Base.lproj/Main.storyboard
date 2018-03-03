@@ -21,55 +21,68 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I69-qH-lNK" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="271"/>
                                 <subviews>
-                                    <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2T2-uo-64z">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T2-uo-64z">
                                         <rect key="frame" x="0.0" y="59" width="133" height="91"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.93333333330000001" green="0.83921568629999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="133" id="YHm-p1-8Vd"/>
+                                            <constraint firstAttribute="height" constant="91" id="lMq-OM-LlY"/>
                                         </constraints>
                                     </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-mv-MoB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-mv-MoB">
                                         <rect key="frame" x="141" y="59" width="118" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="118" id="Gyf-Ud-WhJ"/>
+                                        </constraints>
                                         <state key="normal" title="Monophonic"/>
                                         <connections>
                                             <action selector="monophonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="XYb-hg-jCA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
                                         <rect key="frame" x="141" y="97" width="118" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Polyphonic"/>
                                         <connections>
                                             <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-Tl-LEv">
+                                        <rect key="frame" x="323" y="0.0" width="413" height="77"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cro-P7-y2d">
-                                <rect key="frame" x="0.0" y="271" width="736" height="143"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="top" secondItem="I69-qH-lNK" secondAttribute="top" constant="59" id="0WH-fv-Iu8"/>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="top" secondItem="d3Z-mv-MoB" secondAttribute="top" id="1bs-UJ-igi"/>
+                                    <constraint firstItem="2T2-uo-64z" firstAttribute="leading" secondItem="I69-qH-lNK" secondAttribute="leading" id="7fr-65-l7g"/>
+                                    <constraint firstItem="d3Z-mv-MoB" firstAttribute="trailing" secondItem="buS-4T-Ols" secondAttribute="trailing" id="A64-ob-Uzn"/>
+                                    <constraint firstItem="d3Z-mv-MoB" firstAttribute="leading" secondItem="buS-4T-Ols" secondAttribute="leading" id="D7P-TW-z4L"/>
+                                    <constraint firstAttribute="bottom" secondItem="wSi-Tl-LEv" secondAttribute="bottom" constant="194" id="Q4c-Di-LMA"/>
+                                    <constraint firstItem="wSi-Tl-LEv" firstAttribute="top" secondItem="I69-qH-lNK" secondAttribute="top" id="WWf-8u-5Lv"/>
+                                    <constraint firstAttribute="trailing" secondItem="wSi-Tl-LEv" secondAttribute="trailing" id="brm-fQ-KEk"/>
+                                    <constraint firstItem="buS-4T-Ols" firstAttribute="top" secondItem="d3Z-mv-MoB" secondAttribute="bottom" constant="8" symbolic="YES" id="lXh-bs-Dq0"/>
+                                    <constraint firstItem="d3Z-mv-MoB" firstAttribute="leading" secondItem="2T2-uo-64z" secondAttribute="trailing" constant="8" symbolic="YES" id="qtI-3n-BL7"/>
+                                    <constraint firstItem="wSi-Tl-LEv" firstAttribute="leading" secondItem="d3Z-mv-MoB" secondAttribute="trailing" constant="64" id="wBm-XW-DUu"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cro-P7-y2d" firstAttribute="leading" secondItem="I69-qH-lNK" secondAttribute="leading" id="Uq6-Yi-1ut"/>
-                            <constraint firstItem="cro-P7-y2d" firstAttribute="top" secondItem="I69-qH-lNK" secondAttribute="bottom" id="VhZ-iw-IWX"/>
-                            <constraint firstItem="I69-qH-lNK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aMs-UP-p1f"/>
-                            <constraint firstAttribute="trailing" secondItem="I69-qH-lNK" secondAttribute="trailing" id="dMG-QD-2St"/>
-                            <constraint firstAttribute="bottom" secondItem="I69-qH-lNK" secondAttribute="bottom" constant="143" id="krQ-Wh-MJi"/>
-                            <constraint firstItem="I69-qH-lNK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oRh-WT-KWh"/>
-                            <constraint firstItem="cro-P7-y2d" firstAttribute="trailing" secondItem="I69-qH-lNK" secondAttribute="trailing" id="pDw-Jl-CSP"/>
-                            <constraint firstItem="cro-P7-y2d" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qJu-fO-VRi"/>
+                            <constraint firstAttribute="bottom" secondItem="I69-qH-lNK" secondAttribute="bottom" constant="143" id="TXp-Ue-OG3"/>
+                            <constraint firstItem="I69-qH-lNK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q6J-t4-Pai"/>
+                            <constraint firstAttribute="trailing" secondItem="I69-qH-lNK" secondAttribute="trailing" id="t7l-lb-t8p"/>
+                            <constraint firstItem="I69-qH-lNK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uoG-Bq-vIN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="keyboardView" destination="cro-P7-y2d" id="FK1-d4-2ti"/>
+                        <outlet property="filterView" destination="wSi-Tl-LEv" id="sN3-7I-Ke1"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="8ly-h5-ir4"/>
                         <outlet property="monophonicButton" destination="d3Z-mv-MoB" id="FTK-hR-bcl"/>
                         <outlet property="polyphonicButton" destination="buS-4T-Ols" id="hWs-uB-2h4"/>
+                        <outlet property="topView" destination="I69-qH-lNK" id="Twr-JS-ZGE"/>
                         <outlet property="wave1Picker" destination="2T2-uo-64z" id="PRj-3H-zn1"/>
                     </connections>
                 </viewController>

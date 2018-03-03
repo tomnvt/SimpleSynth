@@ -14,9 +14,11 @@ import AudioKitUI
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
 
     @IBOutlet weak var wave1Picker: UIPickerView!
-    @IBOutlet weak var keyboardView: UIView!
     @IBOutlet weak var monophonicButton: UIButton!
     @IBOutlet weak var polyphonicButton: UIButton!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var filterView: UIView!
+    @IBOutlet var mainView: UIView!
     
     var currentMIDINote: MIDINoteNumber = 0
     
@@ -27,6 +29,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 releaseDuration: 0.1)
     
     var filter = AKKorgLowPassFilter()
+    var filterSlider = AKSlider(property: "Cutoff Frequency")
     
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
@@ -41,17 +44,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
-        keyboard = AKKeyboardView(width: Int(keyboardView.frame.size.width), height: Int(keyboardView.frame.size.height), firstOctave: 3, octaveCount: 2)
+        keyboard = AKKeyboardView(width: Int(mainView.frame.size.width), height: Int(mainView.frame.size.height)/3, firstOctave: 3, octaveCount: 2)
         keyboard.delegate = self
-        keyboardView.addSubview(keyboard)
+        mainView.addSubview(keyboard)
+        keyboard.frame = CGRect(x: 0, y: mainView.frame.size.height - mainView.frame.size.height/3, width: mainView.frame.size.width, height: mainView.frame.size.height/3)
         
         filter = AKKorgLowPassFilter(bank)
-        filter.cutoffFrequency = 500
-        filter.play()
         
         AudioKit.output = filter
         
         AudioKit.start()
+        
+        filterSlider = AKSlider(property: "Cutoff Frequency", value: filter.cutoffFrequency, range: 20 ... 20000, taper: 5, format: "%0.1f Hz", frame: CGRect(x: 10, y: 10, width: mainView.frame.size.width / 2, height: 50))  { sliderValue in self.filter.cutoffFrequency = sliderValue }
+        
+        topView.addSubview(filterSlider)
+        
+        filter.play()
         
     }
     
@@ -86,8 +94,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func setWaveform(waveformIndex: Int) {
         bank = AKOscillatorBank(waveform: waveforms[waveformIndex])
+        filter = AKKorgLowPassFilter(bank)
+        filter.play()
         AudioKit.output = filter
-
         AudioKit.start()
     }
     
