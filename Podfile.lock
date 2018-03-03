@@ -2,19 +2,16 @@ PODS:
   - AudioKit (4.0.4):
     - AudioKit/UI (= 4.0.4)
   - AudioKit/UI (4.0.4)
-  - MusicTheorySwift (0.1)
-  - PianoView (0.0.1):
-    - MusicTheorySwift
+  - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - AudioKit
-  - PianoView
+  - SnapKit
 
 SPEC CHECKSUMS:
   AudioKit: 647145c0462dc9dc8a8582998cd6db5f2e1ea848
-  MusicTheorySwift: 9e7f1bf66904190f82b34b9d36e09e296dde438b
-  PianoView: f234ac44b5cdd043a0e140cbbf84a95e4660865b
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 2e952d464a5b18489d48d043d26c275a657b2116
+PODFILE CHECKSUM: 65ef6cb82db46efa65439d5c2ecd0295eefa7e90
 
 COCOAPODS: 1.4.0

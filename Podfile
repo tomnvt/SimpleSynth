@@ -7,7 +7,7 @@ target 'SimpleSynth' do
 
   # Pods for SimpleSynth
 pod 'AudioKit'
-pod 'PianoView'
+pod 'SnapKit'
 
 post_install do |installer|
 installer.pods_project.build_configurations.each do |config|

@@ -9,6 +9,7 @@
 import UIKit
 import AudioKit
 import AudioKitUI
+import SnapKit
 
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
@@ -16,9 +17,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var wave1Picker: UIPickerView!
     @IBOutlet weak var monophonicButton: UIButton!
     @IBOutlet weak var polyphonicButton: UIButton!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var filterView: UIView!
-    @IBOutlet var mainView: UIView!
     
     var currentMIDINote: MIDINoteNumber = 0
     
@@ -44,10 +42,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
         
-        keyboard = AKKeyboardView(width: Int(mainView.frame.size.width), height: Int(mainView.frame.size.height)/3, firstOctave: 3, octaveCount: 2)
+        keyboard = AKKeyboardView(width: Int(self.view.frame.size.width), height: Int(self.view.frame.size.height)/3, firstOctave: 3, octaveCount: 2)
         keyboard.delegate = self
-        mainView.addSubview(keyboard)
-        keyboard.frame = CGRect(x: 0, y: mainView.frame.size.height - mainView.frame.size.height/3, width: mainView.frame.size.width, height: mainView.frame.size.height/3)
+        self.view.addSubview(keyboard)
+        keyboard.snp.makeConstraints( { (make) -> Void in
+            make.left.bottom.right.equalToSuperview()
+            make.height.equalTo(self.view.frame.size.height/3)
+            
+        })
         
         filter = AKKorgLowPassFilter(bank)
         
@@ -55,9 +57,33 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         AudioKit.start()
         
-        filterSlider = AKSlider(property: "Cutoff Frequency", value: filter.cutoffFrequency, range: 20 ... 20000, taper: 5, format: "%0.1f Hz", frame: CGRect(x: 10, y: 10, width: mainView.frame.size.width / 2, height: 50))  { sliderValue in self.filter.cutoffFrequency = sliderValue }
+        filterSlider = AKSlider(property: "Low Pass Cutoff", value: filter.cutoffFrequency, range: 20 ... 20000, taper: 5, format: "%0.1f Hz", frame: CGRect(x: self.view.frame.size.width/2, y: 20, width: (self.view.frame.size.width / 2) - 10, height: 50))  { sliderValue in self.filter.cutoffFrequency = sliderValue }
+
+        self.view.addSubview(filterSlider)
         
-        topView.addSubview(filterSlider)
+        monophonicButton.backgroundColor = UIColor.cyan
+        monophonicButton.setTitleColor(UIColor.black, for: .normal)
+        
+        polyphonicButton.backgroundColor = UIColor.cyan
+        polyphonicButton.setTitleColor(UIColor.black, for: .normal)
+        
+        monophonicButton.snp.makeConstraints( { (make) -> Void in
+            make.topMargin.equalTo(30)
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+        })
+        
+        polyphonicButton.snp.makeConstraints( { (make) -> Void in
+            make.topMargin.equalTo(50)
+            make.height.equalTo(20)
+            make.width.equalTo(150)
+        })
+
+        wave1Picker.snp.makeConstraints( { (make) -> Void in
+            make.topMargin.equalTo(70)
+            make.height.equalTo(150)
+            make.width.equalTo(150)
+        })
         
         filter.play()
         
