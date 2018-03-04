@@ -18,18 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3Z-mv-MoB">
-                                <rect key="frame" x="0.0" y="0.0" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Monophonic"/>
-                                <connections>
-                                    <action selector="monophonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="XYb-hg-jCA"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
                                 <rect key="frame" x="0.0" y="38" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Polyphonic"/>
+                                <state key="normal" title="Polyphonic mode"/>
                                 <connections>
                                     <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
                                 </connections>
@@ -61,7 +53,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="monophonicButton" destination="d3Z-mv-MoB" id="FTK-hR-bcl"/>
                         <outlet property="octaveDown" destination="T8e-sp-k3f" id="fo1-Mr-Om8"/>
                         <outlet property="octaveUp" destination="94q-p0-GFY" id="xlz-5i-SZd"/>
                         <outlet property="polyphonicButton" destination="buS-4T-Ols" id="hWs-uB-2h4"/>
