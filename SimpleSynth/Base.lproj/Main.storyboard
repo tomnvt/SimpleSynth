@@ -44,11 +44,17 @@
                                 <rect key="frame" x="44" y="68" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-1"/>
+                                <connections>
+                                    <action selector="octaveDownPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o90-Au-vnv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94q-p0-GFY">
                                 <rect key="frame" x="44" y="106" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+1"/>
+                                <connections>
+                                    <action selector="octaveUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hG2-wW-ln0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -74,10 +74,29 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 frame: CGRect(x: self.view.frame.size.width/2,
                                               y: ((self.view.frame.size.height / 10) * 0 + self.view.frame.size.height / 20),
                                               width: (self.view.frame.size.width / 2) - 10,
-                                              height: 50))
+                                              height: (self.view.frame.size.height / 9)))
         { sliderValue in self.filter.cutoffFrequency = sliderValue }
 
         self.view.addSubview(filterSlider)
+        
+        let adsrView = AKADSRView { att, dec, sus, rel in
+            self.bank.attackDuration = att
+            self.bank.decayDuration = dec
+            self.bank.sustainLevel = sus
+            self.bank.releaseDuration = rel
+        }
+        
+        adsrView.attackDuration = bank.attackDuration
+        adsrView.decayDuration = bank.decayDuration
+        adsrView.releaseDuration = bank.releaseDuration
+        adsrView.sustainLevel = bank.sustainLevel
+        
+        adsrView.frame = CGRect(x: self.view.frame.size.width/2,
+                                y: ((self.view.frame.size.height / 9) * 1 + self.view.frame.size.height / 20),
+                                width: (self.view.frame.size.width / 2) - 10,
+                                height: (self.view.frame.size.height / 9) * 2 )
+        
+        self.view.addSubview(adsrView)
         
         monophonicButton.backgroundColor = UIColor.cyan
         monophonicButton.setTitleColor(UIColor.black, for: .normal)
@@ -187,5 +206,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         keyboard.polyphonicMode = true
     }
     
+    @IBAction func octaveDownPressed(_ sender: UIButton) {
+        if octave >= 0 {
+            octave -= 1
+            keyboard.firstOctave = octave
+        }
+    }
+    
+    
+    @IBAction func octaveUpPressed(_ sender: UIButton) {
+        if octave <= 5 {
+        octave += 1
+        keyboard.firstOctave = octave
+        }
+    }
 }
 
