@@ -21,7 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
                                 <rect key="frame" x="0.0" y="38" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Polyphonic mode"/>
+                                <state key="normal" title="Monophonic mode"/>
                                 <connections>
                                     <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
                                 </connections>

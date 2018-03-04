@@ -29,6 +29,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var octave = 3
     
+    let octaveLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .cyan
+        return label
+    }()
+    
     var filter = AKKorgLowPassFilter()
     var filterSlider = AKSlider(property: "Cutoff Frequency")
     
@@ -102,15 +108,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
         polyphonicButton.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 20)
+            make.bottom.equalTo(octaveUp.snp.top)
             make.height.equalTo(self.view.frame.size.height / 10)
-            make.width.equalTo(self.view.frame.size.width / 5)
+            make.width.equalTo(self.view.frame.size.width / 4)
         })
 
         wave1Picker.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo((self.view.frame.size.height / 10) * 2 + self.view.frame.size.height / 20)
+            make.top.equalTo(self.view.snp.top).offset(self.view.frame.size.height / 10)
             make.height.equalTo((self.view.frame.size.height / 10)*3)
-            make.width.equalTo(self.view.frame.size.width / 6)
+            make.width.equalTo(self.view.frame.size.width / 4)
         })
     
         octaveDown.backgroundColor = UIColor.cyan
@@ -118,9 +124,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         octaveDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
         octaveDown.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo((self.view.frame.size.height / 10) * 5 + self.view.frame.size.height / 20)
+            make.bottom.equalTo(keyboard.snp.top)
             make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
-            make.width.equalTo(self.view.frame.size.width / 12)
+            make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
         
         octaveUp.backgroundColor = UIColor.cyan
@@ -128,15 +134,31 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         octaveUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
         octaveUp.snp.makeConstraints( { (make) -> Void in
-            make.topMargin.equalTo((self.view.frame.size.height / 10) * 5 + self.view.frame.size.height / 20)
-            make.leftMargin.equalTo(self.view.frame.size.width / 12)
+            make.bottom.equalTo(keyboard.snp.top)
+            make.rightMargin.equalTo(polyphonicButton)
             make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
-            make.width.equalTo(self.view.frame.size.width / 12)
+            make.width.equalTo((self.view.frame.size.width / 4) / 3)
+        })
+        
+        self.view.addSubview(octaveLabel)
+        octaveLabel.text = String(octave + 1)
+        octaveLabel.textAlignment = .center
+        octaveLabel.textColor = UIColor.black
+        octaveLabel.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        
+        octaveLabel.snp.makeConstraints( { make in
+            make.top.equalTo(polyphonicButton.snp.bottom)
+            make.left.equalTo(octaveDown.snp.right)
+            make.right.equalTo(octaveUp.snp.left)
+            make.bottom.equalTo(keyboard.snp.top)
+            make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
+            make.width.equalTo(self.view.frame.size.width / 15)
         })
         
         filter.play()
         
     }
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -201,14 +223,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if octave >= 0 {
             octave -= 1
             keyboard.firstOctave = octave
+            octaveLabel.text = String(octave + 1)
         }
     }
     
     
     @IBAction func octaveUpPressed(_ sender: UIButton) {
         if octave <= 5 {
-        octave += 1
-        keyboard.firstOctave = octave
+            octave += 1
+            keyboard.firstOctave = octave
+            octaveLabel.text = String(octave + 1)
         }
     }
 }
