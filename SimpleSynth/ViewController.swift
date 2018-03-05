@@ -38,6 +38,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var filter = AKKorgLowPassFilter()
     var filterSlider = AKSlider(property: "Cutoff Frequency")
     
+    var reverb = AKReverb()
+    var reverbSlider = AKSlider(property: "Reverb Ammount")
+    
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
     
@@ -67,7 +70,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         filter = AKKorgLowPassFilter(bank)
         
-        AudioKit.output = filter
+        reverb = AKReverb(filter)
+        reverb.dryWetMix = 0.5
+        
+        AudioKit.output = reverb
         
         AudioKit.start()
         
@@ -102,6 +108,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 height: (self.view.frame.size.height / 9) * 2 )
         
         self.view.addSubview(adsrView)
+        
+        
+        reverbSlider = AKSlider(property: "Reverb Ammount",
+                                value: reverb.dryWetMix,
+                                frame: CGRect(x: self.view.frame.size.width/2,
+                                              y: (filterSlider.frame.size.height * 1.55 + adsrView.frame.size.height),
+                                              width: (self.view.frame.size.width / 2) - 10,
+                                              height: (self.view.frame.size.height / 9)))
+        { sliderValue in self.reverb.dryWetMix = sliderValue }
+        
+        self.view.addSubview(reverbSlider)
         
         polyphonicButton.backgroundColor = UIColor.cyan
         polyphonicButton.setTitleColor(UIColor.black, for: .normal)
