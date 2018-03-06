@@ -39,7 +39,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var filterSlider = AKSlider(property: "Cutoff Frequency")
     
     var reverb = AKReverb()
-    var reverbSlider = AKSlider(property: "Reverb Ammount")
+    var reverbSlider = AKSlider(property: "Reverb Amount")
+    
+    var delay = AKDelay()
+    var delaySlider = AKSlider(property: "Delay Amount")
     
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
@@ -73,7 +76,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         reverb = AKReverb(filter)
         reverb.dryWetMix = 0.5
         
-        AudioKit.output = reverb
+        delay = AKDelay(reverb)
+        delay.time = 0.3
+        delay.feedback = 0.5
+        delay.dryWetMix = 0.0
+        
+        AudioKit.output = delay
         
         AudioKit.start()
         
@@ -110,7 +118,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.view.addSubview(adsrView)
         
         
-        reverbSlider = AKSlider(property: "Reverb Ammount",
+        reverbSlider = AKSlider(property: "Reverb Amount",
                                 value: reverb.dryWetMix,
                                 frame: CGRect(x: self.view.frame.size.width/2,
                                               y: (filterSlider.frame.size.height * 1.55 + adsrView.frame.size.height),
@@ -119,6 +127,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         { sliderValue in self.reverb.dryWetMix = sliderValue }
         
         self.view.addSubview(reverbSlider)
+        
+        delaySlider = AKSlider(property: "Delay Amount",
+                               value: delay.dryWetMix,
+                               frame: CGRect(x: self.view.frame.size.width/2,
+                                             y: (filterSlider.frame.size.height * 2.65 + adsrView.frame.size.height),
+                                             width: (self.view.frame.size.width / 2) - 10,
+                                             height: (self.view.frame.size.height / 9)))
+        { sliderValue in self.delay.dryWetMix = sliderValue }
+        
+        self.view.addSubview(delaySlider)
         
         polyphonicButton.backgroundColor = UIColor.cyan
         polyphonicButton.setTitleColor(UIColor.black, for: .normal)
