@@ -48,7 +48,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var currentRampTime = 0.0
     
     let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
-    let waveformNames = ["square", "triangle", "sine", "sawtooth"]
+    let waveformNames = ["off", "square", "triangle", "sine", "sawtooth"]
     
     
     override func viewDidLoad() {
@@ -213,7 +213,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        setWaveform(waveformIndex: row)
+        if row == 0 {
+            bank.disconnectOutput()
+        } else {
+            setWaveform(waveformIndex: row - 1)
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
