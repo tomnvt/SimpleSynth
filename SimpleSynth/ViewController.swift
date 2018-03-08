@@ -50,6 +50,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
     let waveformNames = ["off", "square", "triangle", "sine", "sawtooth"]
     
+    var wave2Picker = UIPickerView()
+    
+    let waveforms2 = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
+    let waveform2Names = ["off2", "square", "triangle", "sine", "sawtooth"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +62,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         wave1Picker.dataSource = self
         wave1Picker.delegate = self
+        wave2Picker.dataSource = self
+        wave2Picker.delegate = self
         
         keyboard = AKKeyboardView(width: Int(self.view.frame.size.width),
                                   height: Int(self.view.frame.size.height)/3,
@@ -117,7 +123,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.addSubview(adsrView)
         
-        
         reverbSlider = AKSlider(property: "Reverb Amount",
                                 value: reverb.dryWetMix,
                                 frame: CGRect(x: self.view.frame.size.width/2,
@@ -148,10 +153,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo(self.view.frame.size.width / 4)
         })
 
+        wave1Picker.tag = 1
+        
         wave1Picker.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(self.view.snp.top).offset(self.view.frame.size.height / 10)
             make.height.equalTo((self.view.frame.size.height / 10)*3)
             make.width.equalTo(self.view.frame.size.width / 4)
+        })
+        
+        self.view.addSubview(wave2Picker)
+        
+        wave2Picker.tag = 2
+        
+        wave2Picker.snp.makeConstraints( { (make) -> Void in
+            make.top.equalTo(self.view.snp.top).offset(self.view.frame.size.height / 10)
+            make.height.equalTo((self.view.frame.size.height / 10)*3)
+            make.width.equalTo(self.view.frame.size.width / 4)
+            make.right.equalTo(delaySlider.snp.left)
         })
     
         octaveDown.backgroundColor = UIColor.cyan
@@ -200,11 +218,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return waveformNames.count
+        if pickerView.tag == 1 {
+            return waveformNames.count
+        } else if pickerView.tag == 2 {
+            return waveform2Names.count
+        }
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return waveformNames[row]
+        if pickerView.tag == 1 {
+            return waveformNames[row]
+        } else if pickerView.tag == 2 {
+            return waveform2Names[row]
+        }
+        return nil
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
