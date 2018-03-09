@@ -23,9 +23,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var keyboard = AKKeyboardView()
     
-    var bank = AKOscillatorBank(waveform: AKTable(.square),
-                                attackDuration: 0.1,
-                                releaseDuration: 0.1)
+    var bank1 = AKOscillatorBank(waveform: AKTable(.square),
+                                 attackDuration: 0.1,
+                                 releaseDuration: 0.1)
+    
+    var bank2 = AKOscillatorBank(waveform: AKTable(.triangle),
+                                 attackDuration: 0.1,
+                                 releaseDuration: 0.1)
     
     var octave = 3
     
@@ -55,6 +59,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let waveforms2 = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
     let waveform2Names = ["off2", "square", "triangle", "sine", "sawtooth"]
     
+    var mixer = AKMixer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,7 +83,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         })
         
-        filter = AKKorgLowPassFilter(bank)
+        filter = AKKorgLowPassFilter(mixer)
         
         reverb = AKReverb(filter)
         reverb.dryWetMix = 0.5
@@ -105,16 +111,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.view.addSubview(filterSlider)
         
         let adsrView = AKADSRView { att, dec, sus, rel in
-            self.bank.attackDuration = att
-            self.bank.decayDuration = dec
-            self.bank.sustainLevel = sus
-            self.bank.releaseDuration = rel
+            self.bank1.attackDuration = att
+            self.bank1.decayDuration = dec
+            self.bank1.sustainLevel = sus
+            self.bank1.releaseDuration = rel
         }
         
-        adsrView.attackDuration = bank.attackDuration
-        adsrView.decayDuration = bank.decayDuration
-        adsrView.releaseDuration = bank.releaseDuration
-        adsrView.sustainLevel = bank.sustainLevel
+        adsrView.attackDuration = bank1.attackDuration
+        adsrView.decayDuration = bank1.decayDuration
+        adsrView.releaseDuration = bank1.releaseDuration
+        adsrView.sustainLevel = bank1.sustainLevel
         
         adsrView.frame = CGRect(x: self.view.frame.size.width/2,
                                 y: ((self.view.frame.size.height / 9) * 1 + self.view.frame.size.height / 20),
@@ -208,6 +214,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo(self.view.frame.size.width / 15)
         })
         
+        mixer = AKMixer(bank1, bank2)
+        
         filter.play()
         
     }
@@ -241,10 +249,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if row == 0 {
-            bank.disconnectOutput()
-        } else {
-            setWaveform(waveformIndex: row - 1)
+        if pickerView.tag == 1 {
+            if row == 0 {
+                bank1.disconnectOutput()
+            } else {
+                setWaveform(forBank: 1, waveformIndex: row - 1)
+            }
+        }
+        if pickerView.tag == 2 {
+            if row == 0 {
+                bank2.disconnectOutput()
+            } else {
+                setWaveform(forBank: 2, waveformIndex: row - 1)
+            }
         }
     }
     
@@ -262,16 +279,26 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func noteOn(note: MIDINoteNumber) {
-        bank.play(noteNumber: note, velocity: 80)
+        bank1.play(noteNumber: note, velocity: 80)
     }
     
     func noteOff(note: MIDINoteNumber) {
-        bank.stop(noteNumber: note)
+        bank1.stop(noteNumber: note)
     }
     
-    func setWaveform(waveformIndex: Int) {
-        bank = AKOscillatorBank(waveform: waveforms[waveformIndex])
-        filter = AKKorgLowPassFilter(bank)
+    func setWaveform(forBank: Int, waveformIndex: Int) {
+        switch forBank {
+        case 1:
+            bank1 = AKOscillatorBank(waveform: waveforms[waveformIndex])
+            break
+        case 2:
+            bank2 = AKOscillatorBank(waveform: waveforms[waveformIndex])
+            break
+        default:
+            break
+        }
+        mixer = AKMixer(bank1, bank2)
+        filter = AKKorgLowPassFilter(mixer)
         filter.play()
         AudioKit.output = filter
         AudioKit.start()
