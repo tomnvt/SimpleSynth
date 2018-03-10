@@ -280,10 +280,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func noteOn(note: MIDINoteNumber) {
         bank1.play(noteNumber: note, velocity: 80)
+        bank2.play(noteNumber: note, velocity: 80)
     }
     
     func noteOff(note: MIDINoteNumber) {
         bank1.stop(noteNumber: note)
+        bank2.stop(noteNumber: note)
     }
     
     func setWaveform(forBank: Int, waveformIndex: Int) {
@@ -300,7 +302,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         mixer = AKMixer(bank1, bank2)
         filter = AKKorgLowPassFilter(mixer)
         filter.play()
-        AudioKit.output = filter
+        reverb = AKReverb(filter)
+        reverb.dryWetMix = reverbSlider.value
+        delay = AKDelay(reverb)
+        delay.dryWetMix = delaySlider.value
+        AudioKit.output = delay
         AudioKit.start()
     }
 
