@@ -115,6 +115,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             self.bank1.decayDuration = dec
             self.bank1.sustainLevel = sus
             self.bank1.releaseDuration = rel
+            self.bank2.attackDuration = att
+            self.bank2.decayDuration = dec
+            self.bank2.sustainLevel = sus
+            self.bank2.releaseDuration = rel
         }
         
         adsrView.attackDuration = bank1.attackDuration
