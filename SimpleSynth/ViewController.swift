@@ -21,6 +21,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var currentMIDINote: MIDINoteNumber = 0
     
+    let oscLabel1 = UILabel()
+    let oscLabel2 = UILabel()
+    
     var keyboard = AKKeyboardView()
     
     var bank1 = AKOscillatorBank(waveform: AKTable(.square),
@@ -63,6 +66,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        oscLabel1.text = "OSC 1"
+        oscLabel1.textColor = UIColor.white
+        oscLabel1.textAlignment = .center
+        
+        self.view.addSubview(oscLabel1)
+        
+        oscLabel2.text = "OSC 2"
+        oscLabel2.textColor = UIColor.white
+        oscLabel2.textAlignment = .center
+
+        self.view.addSubview(oscLabel2)
+        
+        
         
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -180,6 +198,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.height.equalTo((self.view.frame.size.height / 10)*3)
             make.width.equalTo(self.view.frame.size.width / 4)
             make.right.equalTo(delaySlider.snp.left)
+        })
+        
+        
+        oscLabel1.snp.makeConstraints( { (make) -> Void in
+            make.top.equalTo(0).offset(5)
+            make.left.equalTo(0)
+            make.right.equalTo(wave2Picker.snp.left)
+            make.bottom.equalTo(wave1Picker.snp.top)
+        })
+        
+        oscLabel2.snp.makeConstraints( { (make) -> Void in
+            make.top.equalTo(0).offset(5)
+            make.left.equalTo(oscLabel1.snp.right)
+            make.right.equalTo(wave2Picker.snp.right)
+            make.bottom.equalTo(wave1Picker.snp.top)
         })
     
         octaveDown.backgroundColor = UIColor.cyan
