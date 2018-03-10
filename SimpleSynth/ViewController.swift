@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let oscLabel1 = UILabel()
     let oscLabel2 = UILabel()
     
+    var beatOnOff = UIButton()
+    
     var keyboard = AKKeyboardView()
     
     var bank1 = AKOscillatorBank(waveform: AKTable(.square),
@@ -67,6 +69,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        beatOnOff.backgroundColor = UIColor.cyan
+        beatOnOff.setTitle("Beat OFF", for: .normal)
+        beatOnOff.setTitleColor(UIColor.black, for: .normal)
+        
+        self.view.addSubview(beatOnOff)
         
         oscLabel1.text = "OSC 1"
         oscLabel1.textColor = UIColor.white
@@ -202,14 +209,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         
         oscLabel1.snp.makeConstraints( { (make) -> Void in
-            make.top.equalTo(0).offset(5)
+            make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(0)
             make.right.equalTo(wave2Picker.snp.left)
             make.bottom.equalTo(wave1Picker.snp.top)
         })
         
         oscLabel2.snp.makeConstraints( { (make) -> Void in
-            make.top.equalTo(0).offset(5)
+            make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(oscLabel1.snp.right)
             make.right.equalTo(wave2Picker.snp.right)
             make.bottom.equalTo(wave1Picker.snp.top)
@@ -221,6 +228,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         octaveDown.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(keyboard.snp.top)
+            make.left.equalTo(self.view.snp.left)
             make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
             make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
@@ -250,6 +258,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
             make.width.equalTo(self.view.frame.size.width / 15)
         })
+        
+        beatOnOff.snp.makeConstraints( { (make) -> Void in
+            make.top.equalTo(polyphonicButton.snp.top)
+            make.left.equalTo(polyphonicButton.snp.right)
+            make.bottom.equalTo(keyboard.snp.top)
+            make.width.equalTo(wave2Picker.snp.width)
+        })
+        
+        beatOnOff.addTarget(self, action: #selector(action(sender:)), for: .touchUpInside)
         
         mixer = AKMixer(bank1, bank2)
         
@@ -372,5 +389,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             octaveLabel.text = String(octave + 1)
         }
     }
+    
+    @objc fileprivate func action(sender: UIButton) {
+        if beatOnOff.currentTitle == "Beat: OFF" {
+            beatOnOff.setTitle("Beat: ON", for: .normal)
+        } else {
+            beatOnOff.setTitle("Beat: OFF", for: .normal)
+        }
+    }
+    
 }
 
