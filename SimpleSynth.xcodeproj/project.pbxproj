@@ -13,6 +13,7 @@
 		E3295DD62042050D008E2D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD42042050D008E2D18 /* Main.storyboard */; };
 		E3295DD82042050D008E2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD72042050D008E2D18 /* Assets.xcassets */; };
 		E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */; };
+		E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = E32B2F7B2055362C00BF0763 /* drumloop.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E3295DD72042050D008E2D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3295DDA2042050D008E2D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3295DDC2042050D008E2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E32B2F7B2055362C00BF0763 /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				E3295DD72042050D008E2D18 /* Assets.xcassets */,
 				E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */,
 				E3295DDC2042050D008E2D18 /* Info.plist */,
+				E32B2F7B2055362C00BF0763 /* drumloop.wav */,
 			);
 			path = SimpleSynth;
 			sourceTree = "<group>";
@@ -124,6 +127,11 @@
 					E3295DCC2042050D008E2D18 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -152,6 +160,7 @@
 			files = (
 				E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */,
 				E3295DD82042050D008E2D18 /* Assets.xcassets in Resources */,
+				E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */,
 				E3295DD62042050D008E2D18 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

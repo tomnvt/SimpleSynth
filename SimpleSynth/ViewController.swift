@@ -26,6 +26,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var beatOnOff = UIButton()
     
+    var drums : AKAudioPlayer?
+    
     var keyboard = AKKeyboardView()
     
     var bank1 = AKOscillatorBank(waveform: AKTable(.square),
@@ -70,8 +72,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         
         beatOnOff.backgroundColor = UIColor.cyan
-        beatOnOff.setTitle("Beat OFF", for: .normal)
+        beatOnOff.setTitle("Beat: OFF", for: .normal)
         beatOnOff.setTitleColor(UIColor.black, for: .normal)
+        
+        drums = getAudioFile()
         
         self.view.addSubview(beatOnOff)
         
@@ -107,6 +111,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.height.equalTo(self.view.frame.size.height/3)
             
         })
+        
+        mixer = AKMixer(bank1, bank2, drums)
         
         filter = AKKorgLowPassFilter(mixer)
         
@@ -268,8 +274,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         beatOnOff.addTarget(self, action: #selector(action(sender:)), for: .touchUpInside)
         
-        mixer = AKMixer(bank1, bank2)
-        
         filter.play()
         
     }
@@ -353,7 +357,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         default:
             break
         }
-        mixer = AKMixer(bank1, bank2)
+        mixer = AKMixer(bank1, bank2, drums)
         filter = AKKorgLowPassFilter(mixer)
         filter.play()
         reverb = AKReverb(filter)
@@ -362,6 +366,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         delay.dryWetMix = delaySlider.value
         AudioKit.output = delay
         AudioKit.start()
+    }
+    
+    func getAudioFile() -> AKAudioPlayer? {
+        do {
+            let drumFile = try AKAudioFile(readFileName: "drumloop.wav")
+            let drums = try AKAudioPlayer(file: drumFile)
+            return drums
+        } catch {
+            print("No audio file")
+        }
+        return nil
     }
 
     @IBAction func polyphonicButtonPressed(_ sender: UIButton) {
@@ -393,8 +408,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @objc fileprivate func action(sender: UIButton) {
         if beatOnOff.currentTitle == "Beat: OFF" {
             beatOnOff.setTitle("Beat: ON", for: .normal)
+            drums?.looping = true
+            drums?.play()
         } else {
             beatOnOff.setTitle("Beat: OFF", for: .normal)
+            drums?.stop()
         }
     }
     
