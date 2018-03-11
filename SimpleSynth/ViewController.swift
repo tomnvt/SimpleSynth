@@ -91,8 +91,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
         self.view.addSubview(oscLabel2)
         
-        
-        
         UIApplication.shared.statusBarStyle = .lightContent
         
         wave1Picker.dataSource = self
@@ -112,21 +110,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
         })
         
-        mixer = AKMixer(bank1, bank2, drums)
-        
-        filter = AKKorgLowPassFilter(mixer)
-        
-        reverb = AKReverb(filter)
         reverb.dryWetMix = 0.5
         
-        delay = AKDelay(reverb)
         delay.time = 0.3
         delay.feedback = 0.5
         delay.dryWetMix = 0.0
-        
-        AudioKit.output = delay
-        
-        AudioKit.start()
         
         filterSlider = AKSlider(property: "Low Pass Cutoff",
                                 value: filter.cutoffFrequency,
@@ -274,7 +262,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         beatOnOff.addTarget(self, action: #selector(action(sender:)), for: .touchUpInside)
         
-        filter.play()
+        routeAudio()
         
     }
     
@@ -357,15 +345,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         default:
             break
         }
-        mixer = AKMixer(bank1, bank2, drums)
-        filter = AKKorgLowPassFilter(mixer)
-        filter.play()
-        reverb = AKReverb(filter)
-        reverb.dryWetMix = reverbSlider.value
-        delay = AKDelay(reverb)
-        delay.dryWetMix = delaySlider.value
-        AudioKit.output = delay
-        AudioKit.start()
     }
     
     func getAudioFile() -> AKAudioPlayer? {
@@ -377,6 +356,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             print("No audio file")
         }
         return nil
+    }
+    
+    func routeAudio() {
+        mixer = AKMixer(bank1, bank2, drums)
+        filter = AKKorgLowPassFilter(mixer)
+        filter.play()
+        reverb = AKReverb(filter)
+        reverb.dryWetMix = reverbSlider.value
+        delay = AKDelay(reverb)
+        delay.dryWetMix = delaySlider.value
+        AudioKit.output = delay
+        AudioKit.start()
     }
 
     @IBAction func polyphonicButtonPressed(_ sender: UIButton) {
