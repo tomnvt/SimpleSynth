@@ -21,7 +21,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
                                 <rect key="frame" x="0.0" y="38" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Monophonic mode"/>
                                 <connections>
                                     <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
                                 </connections>
@@ -49,7 +48,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>

@@ -63,13 +63,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var wave2Picker = UIPickerView()
     
-    let waveforms2 = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
-    let waveform2Names = ["off2", "square", "triangle", "sine", "sawtooth"]
-    
     var mixer = AKMixer()
+    var postFxMixer = AKMixer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.black
+        
+        polyphonicButton.setTitle("Monophonic mode", for: .normal)
         
         beatOnOff.backgroundColor = UIColor.cyan
         beatOnOff.setTitle("Beat: OFF", for: .normal)
@@ -275,7 +277,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if pickerView.tag == 1 {
             return waveformNames.count
         } else if pickerView.tag == 2 {
-            return waveform2Names.count
+            return waveformNames.count
         }
         return 0
     }
@@ -284,7 +286,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if pickerView.tag == 1 {
             return waveformNames[row]
         } else if pickerView.tag == 2 {
-            return waveform2Names[row]
+            return waveformNames[row]
         }
         return nil
     }
@@ -309,6 +311,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 setWaveform(forBank: 2, waveformIndex: row - 1)
             }
         }
+        routeAudio()
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -359,14 +362,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func routeAudio() {
-        mixer = AKMixer(bank1, bank2, drums)
+        mixer = AKMixer(bank1, bank2)
         filter = AKKorgLowPassFilter(mixer)
         filter.play()
         reverb = AKReverb(filter)
         reverb.dryWetMix = reverbSlider.value
         delay = AKDelay(reverb)
         delay.dryWetMix = delaySlider.value
-        AudioKit.output = delay
+        postFxMixer = AKMixer(delay, drums)
+        AudioKit.output = postFxMixer
         AudioKit.start()
     }
 
