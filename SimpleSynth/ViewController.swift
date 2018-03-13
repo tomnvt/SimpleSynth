@@ -15,9 +15,12 @@ import SnapKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
 
     @IBOutlet weak var wave1Picker: UIPickerView!
-    @IBOutlet weak var polyphonicButton: UIButton!
+//    @IBOutlet weak var polyphonicButton: UIButton!
     @IBOutlet weak var octaveDown: UIButton!
     @IBOutlet weak var octaveUp: UIButton!
+    
+    var polyphonicButton = UIButton()
+//    var octaveDown: UIButton!
     
     var currentMIDINote: MIDINoteNumber = 0
     
@@ -68,10 +71,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.black
-        
-        polyphonicButton.setTitle("Monophonic mode", for: .normal)
         
         beatOnOff.backgroundColor = UIColor.cyan
         beatOnOff.setTitle("Beat: OFF", for: .normal)
@@ -174,9 +173,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.addSubview(delaySlider)
         
-        polyphonicButton.backgroundColor = UIColor.cyan
-        polyphonicButton.setTitleColor(UIColor.black, for: .normal)
-        polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        self.view.addSubview(polyphonicButton)
         
         polyphonicButton.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(octaveUp.snp.top)
@@ -262,9 +259,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo(wave2Picker.snp.width)
         })
         
-        beatOnOff.addTarget(self, action: #selector(action(sender:)), for: .touchUpInside)
+        beatOnOff.addTarget(self, action: #selector(beatOnOff(sender:)), for: .touchDown)
         
         routeAudio()
+        
+        self.view.backgroundColor = UIColor.black
+        
+        polyphonicButton.setTitle("Monophonic mode", for: .normal)
+        polyphonicButton.backgroundColor = UIColor.cyan
+        polyphonicButton.setTitleColor(UIColor.black, for: .normal)
+        polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        
+        polyphonicButton.addTarget(self, action: #selector(polyphonicButtonPressed(sender:)), for: .touchDown)
         
     }
     
@@ -374,7 +380,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         AudioKit.start()
     }
 
-    @IBAction func polyphonicButtonPressed(_ sender: UIButton) {
+    @objc fileprivate func polyphonicButtonPressed(sender: UIButton) {
         keyboard.polyphonicMode = !keyboard.polyphonicMode
         if keyboard.polyphonicMode {
             polyphonicButton.setTitle("Polyphonic mode", for: .normal)
@@ -400,7 +406,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    @objc fileprivate func action(sender: UIButton) {
+    @objc fileprivate func beatOnOff(sender: UIButton) {
         if beatOnOff.currentTitle == "Beat: OFF" {
             beatOnOff.setTitle("Beat: ON", for: .normal)
             drums?.looping = true

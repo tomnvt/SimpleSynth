@@ -21,9 +21,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-4T-Ols">
                                 <rect key="frame" x="0.0" y="38" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="polyphonicButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="VhO-dw-aiT"/>
-                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2T2-uo-64z">
                                 <rect key="frame" x="10" y="76" width="133" height="91"/>
@@ -53,7 +50,6 @@
                     <connections>
                         <outlet property="octaveDown" destination="T8e-sp-k3f" id="fo1-Mr-Om8"/>
                         <outlet property="octaveUp" destination="94q-p0-GFY" id="xlz-5i-SZd"/>
-                        <outlet property="polyphonicButton" destination="buS-4T-Ols" id="hWs-uB-2h4"/>
                         <outlet property="wave1Picker" destination="2T2-uo-64z" id="PRj-3H-zn1"/>
                     </connections>
                 </viewController>
