@@ -14,13 +14,10 @@ import SnapKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
 
-    @IBOutlet weak var wave1Picker: UIPickerView!
-//    @IBOutlet weak var polyphonicButton: UIButton!
-    @IBOutlet weak var octaveDown: UIButton!
-    @IBOutlet weak var octaveUp: UIButton!
-    
     var polyphonicButton = UIButton()
-//    var octaveDown: UIButton!
+    var octaveDown = UIButton()
+    var octaveUp = UIButton()
+    var wave1Picker = UIPickerView()
     
     var currentMIDINote: MIDINoteNumber = 0
     
@@ -174,6 +171,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.view.addSubview(delaySlider)
         
         self.view.addSubview(polyphonicButton)
+        self.view.addSubview(octaveUp)
+        self.view.addSubview(octaveDown)
         
         polyphonicButton.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(octaveUp.snp.top)
@@ -181,6 +180,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo(self.view.frame.size.width / 4)
         })
 
+        self.view.addSubview(wave1Picker)
+        
         wave1Picker.tag = 1
         
         wave1Picker.snp.makeConstraints( { (make) -> Void in
@@ -215,9 +216,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.bottom.equalTo(wave1Picker.snp.top)
         })
     
+        octaveDown.setTitle("-1", for: .normal)
         octaveDown.backgroundColor = UIColor.cyan
         octaveDown.setTitleColor(UIColor.black, for: .normal)
         octaveDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        octaveDown.addTarget(self, action: #selector(octaveDownPressed(sender:)), for: .touchDown)
         
         octaveDown.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(keyboard.snp.top)
@@ -226,9 +229,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
         
+        octaveUp.setTitle("+1", for: .normal)
         octaveUp.backgroundColor = UIColor.cyan
         octaveUp.setTitleColor(UIColor.black, for: .normal)
         octaveUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        octaveUp.addTarget(self, action: #selector(octaveUpPressed(sender:)), for: .touchDown)
         
         octaveUp.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(keyboard.snp.top)
@@ -317,7 +322,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 setWaveform(forBank: 2, waveformIndex: row - 1)
             }
         }
-        routeAudio()
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -354,6 +358,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         default:
             break
         }
+        routeAudio()
     }
     
     func getAudioFile() -> AKAudioPlayer? {
@@ -389,7 +394,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    @IBAction func octaveDownPressed(_ sender: UIButton) {
+     @objc fileprivate func octaveDownPressed(sender: UIButton) {
         if octave >= 0 {
             octave -= 1
             keyboard.firstOctave = octave
@@ -398,7 +403,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     
-    @IBAction func octaveUpPressed(_ sender: UIButton) {
+     @objc fileprivate func octaveUpPressed(sender: UIButton) {
         if octave <= 5 {
             octave += 1
             keyboard.firstOctave = octave
