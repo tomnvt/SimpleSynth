@@ -14,38 +14,62 @@ import SnapKit
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
 
+    // Numeric variables
+    var octave = 3
+    var currentAmplitude = 0.1
+    var currentRampTime = 0.0
+    
+    // UI element variables
     var polyphonicButton = UIButton()
     var octaveDown = UIButton()
     var octaveUp = UIButton()
-    var wave1Picker = UIPickerView()
-    
-    var currentMIDINote: MIDINoteNumber = 0
-    
-    let oscLabel1 = UILabel()
-    let oscLabel2 = UILabel()
-    
     var beatOnOff = UIButton()
+    
+    var wave1Picker = UIPickerView()
+    var wave2Picker = UIPickerView()
+    
+    let oscLabel1: UILabel = {
+        let label = UILabel()
+        label.text = "OSC 1"
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let oscLabel2: UILabel = {
+        let label = UILabel()
+        label.text = "OSC 2"
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let octaveLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .cyan
+        label.text = "4"
+        label.textAlignment = .center
+        label.textColor = UIColor.black
+        return label
+    }()
+    
+    // AudioKit variables
+    var currentMIDINote: MIDINoteNumber = 0
     
     var drums : AKAudioPlayer?
     
     var keyboard = AKKeyboardView()
     
+    let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
+    let waveformNames = ["off", "square", "triangle", "sine", "sawtooth"]
+    
     var bank1 = AKOscillatorBank(waveform: AKTable(.square),
                                  attackDuration: 0.1,
                                  releaseDuration: 0.1)
-    
     var bank2 = AKOscillatorBank(waveform: AKTable(.triangle),
                                  attackDuration: 0.1,
                                  releaseDuration: 0.1)
-    
-    var octave = 3
-    
-    let octaveLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .cyan
-        return label
-    }()
-    
+
     var filter = AKKorgLowPassFilter()
     var filterSlider = AKSlider(property: "Cutoff Frequency")
     
@@ -55,16 +79,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var delay = AKDelay()
     var delaySlider = AKSlider(property: "Delay Amount")
     
-    var currentAmplitude = 0.1
-    var currentRampTime = 0.0
-    
-    let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
-    let waveformNames = ["off", "square", "triangle", "sine", "sawtooth"]
-    
-    var wave2Picker = UIPickerView()
-    
     var mixer = AKMixer()
     var postFxMixer = AKMixer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,16 +94,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.addSubview(beatOnOff)
         
-        oscLabel1.text = "OSC 1"
-        oscLabel1.textColor = UIColor.white
-        oscLabel1.textAlignment = .center
-        
         self.view.addSubview(oscLabel1)
         
-        oscLabel2.text = "OSC 2"
-        oscLabel2.textColor = UIColor.white
-        oscLabel2.textAlignment = .center
-
         self.view.addSubview(oscLabel2)
         
         UIApplication.shared.statusBarStyle = .lightContent
@@ -242,11 +251,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
         
-        self.view.addSubview(octaveLabel)
-        octaveLabel.text = String(octave + 1)
-        octaveLabel.textAlignment = .center
-        octaveLabel.textColor = UIColor.black
         octaveLabel.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        self.view.addSubview(octaveLabel)
         
         octaveLabel.snp.makeConstraints( { make in
             make.top.equalTo(polyphonicButton.snp.bottom)
