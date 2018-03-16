@@ -19,12 +19,39 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var currentAmplitude = 0.1
     var currentRampTime = 0.0
     
-    // UI element variables
-    var polyphonicButton = UIButton()
-    var octaveDown = UIButton()
-    var octaveUp = UIButton()
-    var beatOnOff = UIButton()
+    // UI elements declaration
+    var polyphonicButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Monophonic mode", for: .normal)
+        button.backgroundColor = UIColor.cyan
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
     
+    var octaveDown: UIButton = {
+        let button = UIButton()
+        button.setTitle("-1", for: .normal)
+        button.backgroundColor = UIColor.cyan
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
+    
+    var octaveUp: UIButton = {
+        let button = UIButton()
+        button.setTitle("+1", for: .normal)
+        button.backgroundColor = UIColor.cyan
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
+    
+    var beatOnOff: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.cyan
+        button.setTitle("Beat: OFF", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
+
     var wave1Picker = UIPickerView()
     var wave2Picker = UIPickerView()
     
@@ -85,10 +112,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        beatOnOff.backgroundColor = UIColor.cyan
-        beatOnOff.setTitle("Beat: OFF", for: .normal)
-        beatOnOff.setTitleColor(UIColor.black, for: .normal)
         
         drums = getAudioFile()
         
@@ -225,12 +248,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.bottom.equalTo(wave1Picker.snp.top)
         })
     
-        octaveDown.setTitle("-1", for: .normal)
-        octaveDown.backgroundColor = UIColor.cyan
-        octaveDown.setTitleColor(UIColor.black, for: .normal)
-        octaveDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
-        octaveDown.addTarget(self, action: #selector(octaveDownPressed(sender:)), for: .touchDown)
-        
         octaveDown.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(keyboard.snp.top)
             make.left.equalTo(self.view.snp.left)
@@ -238,11 +255,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
         
-        octaveUp.setTitle("+1", for: .normal)
-        octaveUp.backgroundColor = UIColor.cyan
-        octaveUp.setTitleColor(UIColor.black, for: .normal)
-        octaveUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
-        octaveUp.addTarget(self, action: #selector(octaveUpPressed(sender:)), for: .touchDown)
+        octaveDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        octaveDown.addTarget(self, action: #selector(octaveDownPressed(sender:)), for: .touchDown)
         
         octaveUp.snp.makeConstraints( { (make) -> Void in
             make.bottom.equalTo(keyboard.snp.top)
@@ -250,6 +264,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.height.equalTo((self.view.frame.size.height / 10) * 1 + self.view.frame.size.height / 200)
             make.width.equalTo((self.view.frame.size.width / 4) / 3)
         })
+        
+        octaveUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
+        octaveUp.addTarget(self, action: #selector(octaveUpPressed(sender:)), for: .touchDown)
         
         octaveLabel.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         self.view.addSubview(octaveLabel)
@@ -276,9 +293,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.backgroundColor = UIColor.black
         
-        polyphonicButton.setTitle("Monophonic mode", for: .normal)
-        polyphonicButton.backgroundColor = UIColor.cyan
-        polyphonicButton.setTitleColor(UIColor.black, for: .normal)
         polyphonicButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: self.view.frame.size.width / 52)
         
         polyphonicButton.addTarget(self, action: #selector(polyphonicButtonPressed(sender:)), for: .touchDown)
@@ -429,4 +443,3 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
 }
-
