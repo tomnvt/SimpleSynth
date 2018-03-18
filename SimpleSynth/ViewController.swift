@@ -138,31 +138,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.view.addSubview(synth.filterSlider)
         
         
-        let adsrView = AKADSRView { att, dec, sus, rel in
-            self.synth.bank1.attackDuration = att
-            self.synth.bank1.decayDuration = dec
-            self.synth.bank1.sustainLevel = sus
-            self.synth.bank1.releaseDuration = rel
-            self.synth.bank2.attackDuration = att
-            self.synth.bank2.decayDuration = dec
-            self.synth.bank2.sustainLevel = sus
-            self.synth.bank2.releaseDuration = rel
-        }
-        adsrView.attackDuration = synth.bank1.attackDuration
-        adsrView.decayDuration = synth.bank1.decayDuration
-        adsrView.releaseDuration = synth.bank1.releaseDuration
-        adsrView.sustainLevel = synth.bank1.sustainLevel
-        adsrView.frame = CGRect(x: self.view.frame.size.width/2,
+        synth.adsrView.frame = CGRect(x: self.view.frame.size.width/2,
                                 y: ((self.view.frame.size.height / 9) * 1 + self.view.frame.size.height / 20),
                                 width: (self.view.frame.size.width / 2) - 10,
                                 height: (self.view.frame.size.height / 9) * 2 )
-        self.view.addSubview(adsrView)
+        self.view.addSubview(synth.adsrView)
         
         
         synth.reverbSlider = AKSlider(property: "Reverb Amount",
                                 value: synth.reverb.dryWetMix,
                                 frame: CGRect(x: self.view.frame.size.width/2,
-                                              y: (synth.filterSlider.frame.size.height * 1.55 + adsrView.frame.size.height),
+                                              y: (synth.filterSlider.frame.size.height * 1.55 + synth.adsrView.frame.size.height),
                                               width: (self.view.frame.size.width / 2) - 10,
                                               height: (self.view.frame.size.height / 9)))
         { sliderValue in self.synth.reverb.dryWetMix = sliderValue }
@@ -172,7 +158,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         synth.delaySlider = AKSlider(property: "Delay Amount",
                                value: synth.delay.dryWetMix,
                                frame: CGRect(x: self.view.frame.size.width/2,
-                                             y: (synth.filterSlider.frame.size.height * 2.65 + adsrView.frame.size.height),
+                                             y: (synth.filterSlider.frame.size.height * 2.65 + synth.adsrView.frame.size.height),
                                              width: (self.view.frame.size.width / 2) - 10,
                                              height: (self.view.frame.size.height / 9)))
         { sliderValue in self.synth.delay.dryWetMix = sliderValue }
