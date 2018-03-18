@@ -14,6 +14,7 @@
 		E3295DD82042050D008E2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD72042050D008E2D18 /* Assets.xcassets */; };
 		E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */; };
 		E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = E32B2F7B2055362C00BF0763 /* drumloop.wav */; };
+		E39026D8205E550D008C9C99 /* Synth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39026D7205E550D008C9C99 /* Synth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E3295DDA2042050D008E2D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3295DDC2042050D008E2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E32B2F7B2055362C00BF0763 /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
+		E39026D7205E550D008C9C99 /* Synth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				E3295DD02042050D008E2D18 /* AppDelegate.swift */,
 				E3295DD22042050D008E2D18 /* ViewController.swift */,
+				E39026D7205E550D008C9C99 /* Synth.swift */,
 				E3295DD42042050D008E2D18 /* Main.storyboard */,
 				E3295DD72042050D008E2D18 /* Assets.xcassets */,
 				E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */,
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39026D8205E550D008C9C99 /* Synth.swift in Sources */,
 				E3295DD32042050D008E2D18 /* ViewController.swift in Sources */,
 				E3295DD12042050D008E2D18 /* AppDelegate.swift in Sources */,
 			);
