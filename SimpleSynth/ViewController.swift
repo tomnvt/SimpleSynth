@@ -409,4 +409,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        AudioKit.stop()
+        beatOnOff.setTitle("Beat: OFF", for: .normal)
+        AudioKit.start()
+    }
+    
 }
