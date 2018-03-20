@@ -267,7 +267,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.bottom.equalTo(synth.keyboard.snp.top)
             make.width.equalTo(wave2Picker.snp.width)
         })
-        beatOnOff.addTarget(self, action: #selector(beatOnOff(sender:)), for: .touchDown)
+        chooseBeatButton.addTarget(self, action: #selector(chooseBeatButtonPressed(sender:)), for: .touchDown)
         
         routeAudio()
         
@@ -427,6 +427,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             beatOnOff.setTitle("Beat: OFF", for: .normal)
             synth.drums?.stop()
         }
+    }
+    
+    
+    @objc fileprivate func chooseBeatButtonPressed(sender: UIButton) {
+        let vc = ChooseBeatViewController() 
+        self.present(vc, animated: true, completion: nil)
     }
     
     
