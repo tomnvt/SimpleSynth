@@ -51,6 +51,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         button.setTitleColor(UIColor.black, for: .normal)
         return button
     }()
+    
+    let chooseBeatButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.cyan
+        button.setTitle("Choose beat", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
 
     var wave1Picker: UIPickerView = {
        let picker = UIPickerView()
@@ -89,6 +97,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return label
     }()
     
+    
     let synth = Synth()
     
     
@@ -101,6 +110,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         synth.drums = getAudioFile()
         
         self.view.addSubview(beatOnOff)
+        
+        self.view.addSubview(chooseBeatButton)
         
         self.view.addSubview(oscLabel1)
         
@@ -243,6 +254,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         beatOnOff.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(polyphonicButton.snp.top)
+            make.left.equalTo(polyphonicButton.snp.right)
+            make.bottom.equalTo(octaveDown.snp.top)
+            make.width.equalTo(wave2Picker.snp.width)
+        })
+        beatOnOff.addTarget(self, action: #selector(beatOnOff(sender:)), for: .touchDown)
+        
+        
+        chooseBeatButton.snp.makeConstraints( { (make) -> Void in
+            make.top.equalTo(beatOnOff.snp.bottom)
             make.left.equalTo(polyphonicButton.snp.right)
             make.bottom.equalTo(synth.keyboard.snp.top)
             make.width.equalTo(wave2Picker.snp.width)
@@ -408,6 +428,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             synth.drums?.stop()
         }
     }
+    
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         AudioKit.stop()
