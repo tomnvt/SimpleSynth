@@ -73,4 +73,15 @@ class Synth {
     }
     
     
+    func getDrumFile() -> AKAudioPlayer? {
+        do {
+            let drumFile = try AKAudioFile(readFileName: "drumloop.wav")
+            let drums = try AKAudioPlayer(file: drumFile)
+            return drums
+        } catch {
+            print("No audio file")
+        }
+        return nil
+    }
+    
 }

@@ -107,7 +107,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.backgroundColor = UIColor.black
         
-        synth.drums = getAudioFile()
+        synth.drums = synth.getDrumFile()
         
         self.view.addSubview(beatOnOff)
         
@@ -361,18 +361,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             break
         }
         routeAudio()
-    }
-    
-    
-    func getAudioFile() -> AKAudioPlayer? {
-        do {
-            let drumFile = try AKAudioFile(readFileName: "drumloop.wav")
-            let drums = try AKAudioPlayer(file: drumFile)
-            return drums
-        } catch {
-            print("No audio file")
-        }
-        return nil
     }
     
     
