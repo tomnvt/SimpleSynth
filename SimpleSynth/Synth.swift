@@ -10,6 +10,8 @@ import AudioKit
 import AudioKitUI
 
 class Synth {
+    var drumsFile = "drumloop.wav"
+    
     var currentMIDINote: MIDINoteNumber = 0
     
     var drums : AKAudioPlayer?
@@ -73,9 +75,9 @@ class Synth {
     }
     
     
-    func getDrumFile() -> AKAudioPlayer? {
+    func getDrums(file: String) -> AKAudioPlayer? {
         do {
-            let drumFile = try AKAudioFile(readFileName: "drumloop.wav")
+            let drumFile = try AKAudioFile(readFileName: file)
             let drums = try AKAudioPlayer(file: drumFile)
             return drums
         } catch {

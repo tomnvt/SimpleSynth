@@ -97,7 +97,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return label
     }()
     
-    
     let synth = Synth()
     
     
@@ -107,7 +106,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.backgroundColor = UIColor.black
         
-        synth.drums = synth.getDrumFile()
+        synth.drums = synth.getDrums(file: synth.drumsFile)
         
         self.view.addSubview(beatOnOff)
         
@@ -429,5 +428,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         AudioKit.start()
     }
+    
     
 }
