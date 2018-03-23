@@ -15,6 +15,7 @@
 		E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */; };
 		E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = E32B2F7B2055362C00BF0763 /* drumloop.wav */; };
 		E39026D8205E550D008C9C99 /* Synth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39026D7205E550D008C9C99 /* Synth.swift */; };
+		E3ADEFD12065ACA30029A63F /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADEFD02065ACA30029A63F /* Beat.swift */; };
 		E3E7BB5F2061BE9000A19932 /* ChooseBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		E3295DDC2042050D008E2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E32B2F7B2055362C00BF0763 /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
 		E39026D7205E550D008C9C99 /* Synth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synth.swift; sourceTree = "<group>"; };
+		E3ADEFD02065ACA30029A63F /* Beat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
 		E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBeatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				E3295DD22042050D008E2D18 /* ViewController.swift */,
 				E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */,
 				E39026D7205E550D008C9C99 /* Synth.swift */,
+				E3ADEFD02065ACA30029A63F /* Beat.swift */,
 				E3295DD42042050D008E2D18 /* Main.storyboard */,
 				E3295DD72042050D008E2D18 /* Assets.xcassets */,
 				E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */,
@@ -239,6 +242,7 @@
 				E39026D8205E550D008C9C99 /* Synth.swift in Sources */,
 				E3E7BB5F2061BE9000A19932 /* ChooseBeatViewController.swift in Sources */,
 				E3295DD32042050D008E2D18 /* ViewController.swift in Sources */,
+				E3ADEFD12065ACA30029A63F /* Beat.swift in Sources */,
 				E3295DD12042050D008E2D18 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

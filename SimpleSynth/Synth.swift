@@ -10,11 +10,8 @@ import AudioKit
 import AudioKitUI
 
 class Synth {
-    var drumsFile = "drumloop.wav"
     
     var currentMIDINote: MIDINoteNumber = 0
-    
-    var drums : AKAudioPlayer?
     
     var keyboard = AKKeyboardView()
     
@@ -72,18 +69,6 @@ class Synth {
         adsrView.decayDuration = bank1.decayDuration
         adsrView.releaseDuration = bank1.releaseDuration
         adsrView.sustainLevel = bank1.sustainLevel
-    }
-    
-    
-    func getDrums(file: String) -> AKAudioPlayer? {
-        do {
-            let drumFile = try AKAudioFile(readFileName: file)
-            let drums = try AKAudioPlayer(file: drumFile)
-            return drums
-        } catch {
-            print("No audio file")
-        }
-        return nil
     }
     
 }

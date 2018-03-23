@@ -11,21 +11,15 @@ import UIKit
 class ChooseBeatViewController: UIViewController {
 
     let synth = Synth()
+    let beat = Beat()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
     }
     
     func changeDrums(newFile: String) {
-        synth.drumsFile = newFile
-        synth.drums = synth.getDrums(file: synth.drumsFile)
+        beat.drumsFile = newFile
+        beat.drums = beat.getDrums(file: beat.drumsFile)
     }
     
 }

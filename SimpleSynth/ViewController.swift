@@ -98,6 +98,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }()
     
     let synth = Synth()
+    let beat = Beat()
     
     
     override func viewDidLoad() {
@@ -106,7 +107,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.backgroundColor = UIColor.black
         
-        synth.drums = synth.getDrums(file: synth.drumsFile)
+        beat.drums = beat.getDrums(file: beat.drumsFile)
         
         self.view.addSubview(beatOnOff)
         
@@ -371,7 +372,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         synth.reverb.dryWetMix = synth.reverbSlider.value
         synth.delay = AKDelay(synth.reverb)
         synth.delay.dryWetMix = synth.delaySlider.value
-        synth.postFxMixer = AKMixer(synth.delay, synth.drums)
+        synth.postFxMixer = AKMixer(synth.delay, beat.drums)
         AudioKit.output = synth.postFxMixer
         AudioKit.start()
     }
@@ -408,11 +409,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @objc fileprivate func beatOnOff(sender: UIButton) {
         if beatOnOff.currentTitle == "Beat: OFF" {
             beatOnOff.setTitle("Beat: ON", for: .normal)
-            synth.drums?.looping = true
-            synth.drums?.play()
+            beat.drums?.looping = true
+            beat.drums?.play()
         } else {
             beatOnOff.setTitle("Beat: OFF", for: .normal)
-            synth.drums?.stop()
+            beat.drums?.stop()
         }
     }
     
