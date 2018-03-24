@@ -100,6 +100,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let synth = Synth()
     let beat = Beat()
     
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         
