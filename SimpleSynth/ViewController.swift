@@ -427,7 +427,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     
     @objc fileprivate func chooseBeatButtonPressed(sender: UIButton) {
-        let vc = ChooseBeatViewController() 
+        let vc = ChooseBeatViewController()
+        vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
     
