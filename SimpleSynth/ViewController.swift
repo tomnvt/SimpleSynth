@@ -273,6 +273,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         routeAudio()
         
+        if defaults.bool(forKey: "beatIsPlaying") {
+            beatOnOff.setTitle("Beat: ON", for: .normal)
+        } else {
+            beatOnOff.setTitle("Beat: OFF", for: .normal)
+        }
+        
     }
     
     
@@ -409,13 +415,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     
     @objc fileprivate func beatOnOff(sender: UIButton) {
-        if beatOnOff.currentTitle == "Beat: OFF" {
+        if defaults.bool(forKey: "beatIsPlaying") == false {
             beatOnOff.setTitle("Beat: ON", for: .normal)
             beat.drums?.looping = true
             beat.drums?.play()
-        } else {
-            beatOnOff.setTitle("Beat: OFF", for: .normal)
-            beat.drums?.stop()
+            defaults.set(true, forKey: "beatIsPlaying")
+        } else if  defaults.bool(forKey: "beatIsPlaying") == true {
+            stopDaBeat()
         }
     }
     
@@ -427,10 +433,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        AudioKit.stop()
-        beatOnOff.setTitle("Beat: OFF", for: .normal)
-        AudioKit.start()
+        stopDaBeat()
     }
     
+    func stopDaBeat() {
+        AudioKit.stop()
+        beatOnOff.setTitle("Beat: OFF", for: .normal)
+        defaults.set(false, forKey: "beatIsPlaying")
+        AudioKit.start()
+    }
     
 }
