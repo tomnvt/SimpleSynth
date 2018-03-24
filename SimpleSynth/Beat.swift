@@ -10,7 +10,7 @@ import AudioKit
 
 class Beat {
     
-    var drumsFile = "drumloop.wav"
+    let beatFiles = ["default.wav", "house1.wav", "house2.wav", "hiphop1.wav", "hiphop2.wav", "dnb1.wav", "dnb2.wav"]
     
     var drums : AKAudioPlayer?
     

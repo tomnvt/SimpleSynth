@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioKit
 
 class ChooseBeatViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Default beat", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 0
         return button
     }()
     
@@ -31,6 +33,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("House 1", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 1
         return button
     }()
     
@@ -39,6 +42,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("House 2", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 2
         return button
     }()
     
@@ -47,6 +51,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Hip Hop 1", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 3
         return button
     }()
     
@@ -55,6 +60,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Hip Hop 2", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 4
         return button
     }()
     
@@ -63,6 +69,7 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Drum and Bass 1", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 5
         return button
     }()
     
@@ -71,12 +78,15 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Drum and Bass 2", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.tag = 6
         return button
     }()
     
-    
     let synth = Synth()
     let beat = Beat()
+    
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,18 +157,39 @@ class ChooseBeatViewController: UIViewController {
         })
         
         backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
+        defaultBeatButton.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        houserBeat1Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        houserBeat2Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        hiphopBeat1Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        hiphopBeat2Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        dnbBeat1Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        dnbBeat2Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
         
     }
     
     func changeDrums(newFile: String) {
-        beat.drumsFile = newFile
-        beat.drums = beat.getDrums(file: beat.drumsFile)
+        AudioKit.stop()
+        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+        routeAudio(synth: synth, beat: beat)
+        if defaults.bool(forKey: "beatIsPlaying") {
+            beat.drums?.looping = true
+        }
+        beat.drums?.play()
     }
     
     @objc fileprivate func backButtonPressed(sender: UIButton) {
         let vc = ViewController()
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
+        if !defaults.bool(forKey: "beatIsPlaying") {
+            beat.drums?.stop()
+        }
+
+    }
+    
+    @objc fileprivate func beatButtonPressed(sender: UIButton) {
+        defaults.set(sender.tag, forKey: "beatFileNumber")
+        changeDrums(newFile: beat.beatFiles[sender.tag])
     }
     
 }

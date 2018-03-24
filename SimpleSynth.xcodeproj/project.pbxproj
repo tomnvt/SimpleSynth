@@ -13,9 +13,15 @@
 		E3295DD62042050D008E2D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD42042050D008E2D18 /* Main.storyboard */; };
 		E3295DD82042050D008E2D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD72042050D008E2D18 /* Assets.xcassets */; };
 		E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */; };
-		E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */ = {isa = PBXBuildFile; fileRef = E32B2F7B2055362C00BF0763 /* drumloop.wav */; };
+		E32B2F7C2055362D00BF0763 /* default.wav in Resources */ = {isa = PBXBuildFile; fileRef = E32B2F7B2055362C00BF0763 /* default.wav */; };
 		E39026D8205E550D008C9C99 /* Synth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39026D7205E550D008C9C99 /* Synth.swift */; };
 		E3ADEFD12065ACA30029A63F /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADEFD02065ACA30029A63F /* Beat.swift */; };
+		E3E3F5F62066900E00741104 /* house1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F02066900B00741104 /* house1.wav */; };
+		E3E3F5F72066900E00741104 /* hiphop1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F12066900C00741104 /* hiphop1.wav */; };
+		E3E3F5F82066900E00741104 /* dnb2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F22066900C00741104 /* dnb2.wav */; };
+		E3E3F5F92066900E00741104 /* house2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F32066900D00741104 /* house2.wav */; };
+		E3E3F5FA2066900E00741104 /* dnb1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F42066900D00741104 /* dnb1.wav */; };
+		E3E3F5FB2066900E00741104 /* hiphop2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F52066900D00741104 /* hiphop2.wav */; };
 		E3E7BB5F2061BE9000A19932 /* ChooseBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +36,15 @@
 		E3295DD72042050D008E2D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3295DDA2042050D008E2D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3295DDC2042050D008E2D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E32B2F7B2055362C00BF0763 /* drumloop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumloop.wav; sourceTree = "<group>"; };
+		E32B2F7B2055362C00BF0763 /* default.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = default.wav; sourceTree = "<group>"; };
 		E39026D7205E550D008C9C99 /* Synth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synth.swift; sourceTree = "<group>"; };
 		E3ADEFD02065ACA30029A63F /* Beat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
+		E3E3F5F02066900B00741104 /* house1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = house1.wav; sourceTree = "<group>"; };
+		E3E3F5F12066900C00741104 /* hiphop1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hiphop1.wav; sourceTree = "<group>"; };
+		E3E3F5F22066900C00741104 /* dnb2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dnb2.wav; sourceTree = "<group>"; };
+		E3E3F5F32066900D00741104 /* house2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = house2.wav; sourceTree = "<group>"; };
+		E3E3F5F42066900D00741104 /* dnb1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dnb1.wav; sourceTree = "<group>"; };
+		E3E3F5F52066900D00741104 /* hiphop2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hiphop2.wav; sourceTree = "<group>"; };
 		E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBeatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,9 +99,23 @@
 				E3295DD72042050D008E2D18 /* Assets.xcassets */,
 				E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */,
 				E3295DDC2042050D008E2D18 /* Info.plist */,
-				E32B2F7B2055362C00BF0763 /* drumloop.wav */,
+				E3BD892420670F2300D71B4D /* Drum Loops */,
 			);
 			path = SimpleSynth;
+			sourceTree = "<group>";
+		};
+		E3BD892420670F2300D71B4D /* Drum Loops */ = {
+			isa = PBXGroup;
+			children = (
+				E32B2F7B2055362C00BF0763 /* default.wav */,
+				E3E3F5F42066900D00741104 /* dnb1.wav */,
+				E3E3F5F22066900C00741104 /* dnb2.wav */,
+				E3E3F5F12066900C00741104 /* hiphop1.wav */,
+				E3E3F5F52066900D00741104 /* hiphop2.wav */,
+				E3E3F5F02066900B00741104 /* house1.wav */,
+				E3E3F5F32066900D00741104 /* house2.wav */,
+			);
+			path = "Drum Loops";
 			sourceTree = "<group>";
 		};
 		F0175F5A4BDE67BB763CB8D7 /* Frameworks */ = {
@@ -167,9 +193,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E3F5F82066900E00741104 /* dnb2.wav in Resources */,
 				E3295DDB2042050D008E2D18 /* LaunchScreen.storyboard in Resources */,
 				E3295DD82042050D008E2D18 /* Assets.xcassets in Resources */,
-				E32B2F7C2055362D00BF0763 /* drumloop.wav in Resources */,
+				E32B2F7C2055362D00BF0763 /* default.wav in Resources */,
+				E3E3F5F92066900E00741104 /* house2.wav in Resources */,
+				E3E3F5FB2066900E00741104 /* hiphop2.wav in Resources */,
+				E3E3F5F62066900E00741104 /* house1.wav in Resources */,
+				E3E3F5FA2066900E00741104 /* dnb1.wav in Resources */,
+				E3E3F5F72066900E00741104 /* hiphop1.wav in Resources */,
 				E3295DD62042050D008E2D18 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

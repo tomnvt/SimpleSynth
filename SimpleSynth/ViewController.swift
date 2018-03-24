@@ -109,7 +109,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.view.backgroundColor = UIColor.black
         
-        beat.drums = beat.getDrums(file: beat.drumsFile)
+        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
         
         self.view.addSubview(beatOnOff)
         
@@ -271,7 +271,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         })
         chooseBeatButton.addTarget(self, action: #selector(chooseBeatButtonPressed(sender:)), for: .touchDown)
         
-        routeAudio()
+        routeAudio(synth: synth, beat: beat)
         
         if defaults.bool(forKey: "beatIsPlaying") {
             beatOnOff.setTitle("Beat: ON", for: .normal)
@@ -368,23 +368,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         default:
             break
         }
-        routeAudio()
+        routeAudio(synth: synth, beat: beat)
     }
     
-    
-    func routeAudio() {
-        synth.mixer = AKMixer(synth.bank1, synth.bank2)
-        synth.filter = AKKorgLowPassFilter(synth.mixer)
-        synth.filter.play()
-        synth.reverb = AKReverb(synth.filter)
-        synth.reverb.dryWetMix = synth.reverbSlider.value
-        synth.delay = AKDelay(synth.reverb)
-        synth.delay.dryWetMix = synth.delaySlider.value
-        synth.postFxMixer = AKMixer(synth.delay, beat.drums)
-        AudioKit.output = synth.postFxMixer
-        AudioKit.start()
-    }
-
     
     @objc fileprivate func polyphonicButtonPressed(sender: UIButton) {
         synth.keyboard.polyphonicMode = !synth.keyboard.polyphonicMode
@@ -441,6 +427,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         AudioKit.stop()
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         defaults.set(false, forKey: "beatIsPlaying")
+        AudioKit.start()
+    }
+    
+}
+
+extension UIViewController {
+    
+    func routeAudio(synth: Synth, beat: Beat) {
+        synth.mixer = AKMixer(synth.bank1, synth.bank2)
+        synth.filter = AKKorgLowPassFilter(synth.mixer)
+        synth.filter.play()
+        synth.reverb = AKReverb(synth.filter)
+        synth.reverb.dryWetMix = synth.reverbSlider.value
+        synth.delay = AKDelay(synth.reverb)
+        synth.delay.dryWetMix = synth.delaySlider.value
+        synth.postFxMixer = AKMixer(synth.delay, beat.drums)
+        AudioKit.output = synth.postFxMixer
         AudioKit.start()
     }
     
