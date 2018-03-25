@@ -279,6 +279,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             beatOnOff.setTitle("Beat: OFF", for: .normal)
         }
         
+        wave1Picker.selectRow(defaults.integer(forKey: "osc1wave"), inComponent: 0, animated: false)
+        wave2Picker.selectRow(defaults.integer(forKey: "osc2wave"), inComponent: 0, animated: false)
+
     }
     
     
