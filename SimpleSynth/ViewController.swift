@@ -320,13 +320,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             } else {
                 setWaveform(forBank: 1, waveformIndex: row - 1)
             }
+            defaults.set(row, forKey: "osc1wave")
         }
+        
         if pickerView.tag == 2 {
             if row == 0 {
                 synth.bank2.disconnectOutput()
             } else {
                 setWaveform(forBank: 2, waveformIndex: row - 1)
             }
+            defaults.set(row, forKey: "osc2wave")
         }
     }
     

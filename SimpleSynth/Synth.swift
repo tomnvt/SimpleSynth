@@ -54,7 +54,11 @@ class Synth {
     var mixer = AKMixer()
     var postFxMixer = AKMixer()
     
+    let defaults = UserDefaults.standard
+    
+    
     init() {
+        
         adsrView = AKADSRView { att, dec, sus, rel in
             self.bank1.attackDuration = att
             self.bank1.decayDuration = dec
@@ -69,6 +73,7 @@ class Synth {
         adsrView.decayDuration = bank1.decayDuration
         adsrView.releaseDuration = bank1.releaseDuration
         adsrView.sustainLevel = bank1.sustainLevel
+        
     }
     
 }
