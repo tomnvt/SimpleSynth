@@ -15,17 +15,12 @@ class Synth {
     
     var keyboard = AKKeyboardView()
     
-    let waveforms = [AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
+    let waveforms = [AKTable(), AKTable(.square), AKTable(.triangle), AKTable(.sine), AKTable(.sawtooth)]
 
     let waveformNames = ["off", "square", "triangle", "sine", "sawtooth"]
 
-    var bank1 = AKOscillatorBank(waveform: AKTable(.square),
-                                 attackDuration: 0.1,
-                                 releaseDuration: 0.1)
-    var bank2 = AKOscillatorBank(waveform: AKTable(.triangle),
-                                 attackDuration: 0.1,
-                                 releaseDuration: 0.1)
-
+    var bank1 : AKOscillatorBank
+    var bank2 : AKOscillatorBank
     
     var adsrView: AKADSRView = {
         let adsr = AKADSRView()
@@ -59,6 +54,22 @@ class Synth {
     
     init() {
         
+        bank1 = AKOscillatorBank(waveform: waveforms[defaults.integer(forKey: "osc1wave")],
+                                 attackDuration: 0.1,
+                                 releaseDuration: 0.1)
+        
+        if defaults.integer(forKey: "osc1wave") == 0 {
+            bank1.disconnectOutput()
+        }
+        
+        bank2 = AKOscillatorBank(waveform: waveforms[defaults.integer(forKey: "osc2wave")],
+                                 attackDuration: 0.1,
+                                 releaseDuration: 0.1)
+        
+        if defaults.integer(forKey: "osc2wave") == 0 {
+            bank2.disconnectOutput()
+        }
+        
         adsrView = AKADSRView { att, dec, sus, rel in
             self.bank1.attackDuration = att
             self.bank1.decayDuration = dec
@@ -69,6 +80,7 @@ class Synth {
             self.bank2.sustainLevel = sus
             self.bank2.releaseDuration = rel
         }
+        
         adsrView.attackDuration = bank1.attackDuration
         adsrView.decayDuration = bank1.decayDuration
         adsrView.releaseDuration = bank1.releaseDuration
