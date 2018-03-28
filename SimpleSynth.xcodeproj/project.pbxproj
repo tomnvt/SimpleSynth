@@ -22,6 +22,7 @@
 		E3E3F5F92066900E00741104 /* house2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F32066900D00741104 /* house2.wav */; };
 		E3E3F5FA2066900E00741104 /* dnb1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F42066900D00741104 /* dnb1.wav */; };
 		E3E3F5FB2066900E00741104 /* hiphop2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3E3F5F52066900D00741104 /* hiphop2.wav */; };
+		E3E489E9206C3D4E00EA1F74 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E489E8206C3D4E00EA1F74 /* DropdownButton.swift */; };
 		E3E7BB5F2061BE9000A19932 /* ChooseBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		E3E3F5F32066900D00741104 /* house2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = house2.wav; sourceTree = "<group>"; };
 		E3E3F5F42066900D00741104 /* dnb1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dnb1.wav; sourceTree = "<group>"; };
 		E3E3F5F52066900D00741104 /* hiphop2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hiphop2.wav; sourceTree = "<group>"; };
+		E3E489E8206C3D4E00EA1F74 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBeatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				E3E7BB5E2061BE9000A19932 /* ChooseBeatViewController.swift */,
 				E39026D7205E550D008C9C99 /* Synth.swift */,
 				E3ADEFD02065ACA30029A63F /* Beat.swift */,
+				E3E489E8206C3D4E00EA1F74 /* DropdownButton.swift */,
 				E3295DD42042050D008E2D18 /* Main.storyboard */,
 				E3295DD72042050D008E2D18 /* Assets.xcassets */,
 				E3295DD92042050D008E2D18 /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 			files = (
 				E39026D8205E550D008C9C99 /* Synth.swift in Sources */,
 				E3E7BB5F2061BE9000A19932 /* ChooseBeatViewController.swift in Sources */,
+				E3E489E9206C3D4E00EA1F74 /* DropdownButton.swift in Sources */,
 				E3295DD32042050D008E2D18 /* ViewController.swift in Sources */,
 				E3ADEFD12065ACA30029A63F /* Beat.swift in Sources */,
 				E3295DD12042050D008E2D18 /* AppDelegate.swift in Sources */,
