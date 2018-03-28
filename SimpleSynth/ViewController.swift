@@ -72,21 +72,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return picker
     }()
     
-    let oscLabel1: UILabel = {
-        let label = UILabel()
-        label.text = "OSC 1"
-        label.textColor = UIColor.white
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let oscLabel2: UILabel = {
-        let label = UILabel()
-        label.text = "OSC 2"
-        label.textColor = UIColor.white
-        label.textAlignment = .center
-        return label
-    }()
+    let oscLabel1 = DropdownButton()
+    let oscLabel2 = DropdownButton()
     
     let octaveLabel: UILabel = {
         let label = UILabel()
@@ -208,6 +195,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.right.equalTo(wave2Picker.snp.right)
             make.bottom.equalTo(wave1Picker.snp.top)
         })
+        
+        oscLabel1.setTitle("OSC 1", for: .normal)
+        oscLabel2.setTitle("OSC 2", for: .normal)
+        
+        oscLabel1.dropView.dropDownOptions = synth.waveformNames
+        oscLabel2.dropView.dropDownOptions = synth.waveformNames
     
         
         self.view.addSubview(octaveDown)

@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import AudioKit
 
 protocol DropdownProtocol {
-    func dropdownPressed(string : String)
+    func dropdownPressed(string : String, row : Int)
 }
 
 class DropdownButton: UIButton, DropdownProtocol {
     
-    func dropdownPressed(string: String) {
+    let synth = Synth()
+    
+    func dropdownPressed(string: String, row: Int) {
         self.setTitle(string, for: .normal)
         self.dismissDropDown()
+        
     }
     
     var dropView = DropdownView()
@@ -90,6 +94,10 @@ class DropdownButton: UIButton, DropdownProtocol {
         }, completion: nil)
     }
     
+    func getWavetable(number: Int) -> AKTable {
+        return synth.waveforms[number]
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -145,7 +153,7 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate.dropdownPressed(string: dropDownOptions[indexPath.row])
+        self.delegate.dropdownPressed(string: dropDownOptions[indexPath.row], row: indexPath.row)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
