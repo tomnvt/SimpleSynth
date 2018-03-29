@@ -12,7 +12,7 @@ import AudioKitUI
 import SnapKit
 
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AKKeyboardDelegate {
+class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate, PassSecondRowDelegate {
 
     // Numeric variables
     var octave = 3
@@ -60,20 +60,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return button
     }()
 
-    var wave1Picker: UIPickerView = {
-       let picker = UIPickerView()
-        picker.tag = 1
-        return picker
+    let oscLabel1: DropdownButton = {
+        let button = DropdownButton()
+        button.tag = 1
+        return button
     }()
     
-    var wave2Picker: UIPickerView = {
-        let picker = UIPickerView()
-        picker.tag = 2
-        return picker
+    let oscLabel2: DropdownButton = {
+        let button = DropdownButton()
+        button.tag = 2
+        return button
     }()
-    
-    let oscLabel1 = DropdownButton()
-    let oscLabel2 = DropdownButton()
     
     let octaveLabel: UILabel = {
         let label = UILabel()
@@ -107,11 +104,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.view.addSubview(oscLabel2)
         
         UIApplication.shared.statusBarStyle = .lightContent
-        
-        wave1Picker.dataSource = self
-        wave1Picker.delegate = self
-        wave2Picker.dataSource = self
-        wave2Picker.delegate = self
         
         synth.keyboard = AKKeyboardView(width: Int(self.view.frame.size.width),
                                         height: Int(self.view.frame.size.height)/3,
@@ -164,36 +156,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         { sliderValue in self.synth.delay.dryWetMix = sliderValue }
         self.view.addSubview(synth.delaySlider)
         
-        
-        self.view.addSubview(wave1Picker)
-        wave1Picker.snp.makeConstraints( { (make) -> Void in
-            make.top.equalTo(self.view.snp.top).offset(self.view.frame.size.height / 10)
-            make.height.equalTo((self.view.frame.size.height / 10)*3)
-            make.width.equalTo(self.view.frame.size.width / 4)
-        })
-        
-        
-        self.view.addSubview(wave2Picker)
-        wave2Picker.snp.makeConstraints( { (make) -> Void in
-            make.top.equalTo(self.view.snp.top).offset(self.view.frame.size.height / 10)
-            make.height.equalTo((self.view.frame.size.height / 10)*3)
-            make.width.equalTo(self.view.frame.size.width / 4)
-            make.right.equalTo(synth.delaySlider.snp.left)
-        })
-        
-        
+    
         oscLabel1.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(0)
-            make.right.equalTo(wave2Picker.snp.left)
-            make.bottom.equalTo(wave1Picker.snp.top)
+            make.right.equalTo(view).dividedBy(4)
+            make.bottom.equalTo(view).dividedBy(8)
         })
         
         oscLabel2.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(oscLabel1.snp.right)
-            make.right.equalTo(wave2Picker.snp.right)
-            make.bottom.equalTo(wave1Picker.snp.top)
+            make.bottom.equalTo(view).dividedBy(8)
+            make.right.equalTo(view).dividedBy(2)
         })
         
         oscLabel1.setTitle("OSC 1", for: .normal)
@@ -201,7 +176,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         oscLabel1.dropView.dropDownOptions = synth.waveformNames
         oscLabel2.dropView.dropDownOptions = synth.waveformNames
-    
+        
+        oscLabel1.delegate1 = self
+        oscLabel2.delegate2 = self
         
         self.view.addSubview(octaveDown)
         octaveDown.snp.makeConstraints( { (make) -> Void in
@@ -251,7 +228,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.top.equalTo(polyphonicButton.snp.top)
             make.left.equalTo(polyphonicButton.snp.right)
             make.bottom.equalTo(octaveDown.snp.top)
-            make.width.equalTo(wave2Picker.snp.width)
+            make.width.equalTo(oscLabel1.snp.width)
         })
         beatOnOff.addTarget(self, action: #selector(beatOnOff(sender:)), for: .touchDown)
         
@@ -260,7 +237,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             make.top.equalTo(beatOnOff.snp.bottom)
             make.left.equalTo(polyphonicButton.snp.right)
             make.bottom.equalTo(synth.keyboard.snp.top)
-            make.width.equalTo(wave2Picker.snp.width)
+            make.width.equalTo(oscLabel1.snp.width)
         })
         chooseBeatButton.addTarget(self, action: #selector(chooseBeatButtonPressed(sender:)), for: .touchDown)
         
@@ -272,77 +249,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             beatOnOff.setTitle("Beat: OFF", for: .normal)
         }
         
-        wave1Picker.selectRow(defaults.integer(forKey: "osc1wave"), inComponent: 0, animated: false)
-        wave2Picker.selectRow(defaults.integer(forKey: "osc2wave"), inComponent: 0, animated: false)
-
     }
-    
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1 {
-            return synth.waveformNames.count
-        } else if pickerView.tag == 2 {
-            return synth.waveformNames.count
-        }
-        return 0
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1 {
-            return synth.waveformNames[row]
-        } else if pickerView.tag == 2 {
-            return synth.waveformNames[row]
-        }
-        return nil
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let attributedString = NSAttributedString(string: synth.waveformNames[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
-        return attributedString
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 1 {
-            if row == 0 {
-                synth.bank1.disconnectOutput()
-            } else {
-                setWaveform(forBank: 1, waveformIndex: row - 1)
-            }
-            defaults.set(row, forKey: "osc1wave")
-        }
-        
-        if pickerView.tag == 2 {
-            if row == 0 {
-                synth.bank2.disconnectOutput()
-            } else {
-                setWaveform(forBank: 2, waveformIndex: row - 1)
-            }
-            defaults.set(row, forKey: "osc2wave")
-        }
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var label = view as! UILabel!
-        if label == nil {
-            label = UILabel()
-        }
-        
-        label?.font = UIFont.systemFont(ofSize: self.view.frame.size.width / 45)
-        label?.text =  synth.waveformNames[row]
-        label?.textColor = UIColor.white
-        label?.textAlignment = .center
-        return label!
-    }
-    
     
     func noteOn(note: MIDINoteNumber) {
         synth.bank1.play(noteNumber: note, velocity: 80)
@@ -427,6 +334,28 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         defaults.set(false, forKey: "beatIsPlaying")
         AudioKit.start()
+    }
+    
+    func passFirst(row: Int) {
+        if row == 0 {
+            synth.bank1.disconnectOutput()
+            oscLabel1.titleLabel?.textColor = UIColor.gray
+        } else {
+            setWaveform(forBank: 1, waveformIndex: row)
+            oscLabel1.titleLabel?.textColor = UIColor.white
+        }
+        defaults.set(row, forKey: "osc1wave")
+    }
+    
+    func passSecond(row: Int) {
+        if row == 0 {
+            synth.bank2.disconnectOutput()
+            oscLabel2.titleLabel?.textColor = UIColor.gray
+        } else {
+            setWaveform(forBank: 2, waveformIndex: row)
+            oscLabel2.titleLabel?.textColor = UIColor.white
+        }
+        defaults.set(row, forKey: "osc2wave")
     }
     
 }

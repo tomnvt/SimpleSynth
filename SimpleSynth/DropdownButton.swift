@@ -9,24 +9,42 @@
 import UIKit
 import AudioKit
 
-protocol DropdownProtocol {
-    func dropdownPressed(string : String, row : Int)
+protocol FirstDropdownProtocol {
+    func firstDropdownPressed(row : Int)
 }
 
-class DropdownButton: UIButton, DropdownProtocol {
+protocol SecondDropdownProtocol {
+    func secondDropdownPressed(row : Int)
+}
+
+protocol PassFirstRowDelegate {
+    func passFirst(row: Int)
+}
+
+protocol PassSecondRowDelegate {
+    func passSecond(row: Int)
+}
+
+class DropdownButton: UIButton, FirstDropdownProtocol, SecondDropdownProtocol {
     
     let synth = Synth()
     
-    func dropdownPressed(string: String, row: Int) {
-        self.setTitle(string, for: .normal)
+    func firstDropdownPressed(row: Int) {
+        self.delegate1?.passFirst(row: row)
         self.dismissDropDown()
-        
+    }
+    
+    func secondDropdownPressed(row: Int) {
+        self.delegate2?.passSecond(row: row)
+        self.dismissDropDown()
     }
     
     var dropView = DropdownView()
     
     var height = NSLayoutConstraint()
     
+    var delegate1: PassFirstRowDelegate?
+    var delegate2: PassSecondRowDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +52,8 @@ class DropdownButton: UIButton, DropdownProtocol {
         self.backgroundColor = UIColor.darkGray
         
         dropView = DropdownView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
-        dropView.delegate = self
+        dropView.delegate1 = self
+        dropView.delegate2 = self
         dropView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -109,7 +128,8 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     
     var tableView = UITableView()
     
-    var delegate : DropdownProtocol!
+    var delegate1 : FirstDropdownProtocol!
+    var delegate2 : SecondDropdownProtocol!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -153,7 +173,8 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate.dropdownPressed(string: dropDownOptions[indexPath.row], row: indexPath.row)
+        self.delegate1.firstDropdownPressed(row: indexPath.row)
+        self.delegate2.secondDropdownPressed(row: indexPath.row)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -184,7 +184,6 @@ class ChooseBeatViewController: UIViewController {
         if !defaults.bool(forKey: "beatIsPlaying") {
             beat.drums?.stop()
         }
-
     }
     
     @objc fileprivate func beatButtonPressed(sender: UIButton) {
