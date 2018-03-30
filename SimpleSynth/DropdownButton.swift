@@ -49,7 +49,8 @@ class DropdownButton: UIButton, FirstDropdownProtocol, SecondDropdownProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.darkGray
+        self.backgroundColor = UIColor.cyan
+        self.setTitleColor(UIColor.black, for: .normal)
         
         dropView = DropdownView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
         dropView.delegate1 = self
@@ -134,10 +135,6 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        tableView.backgroundColor = UIColor.darkGray
-        self.backgroundColor = UIColor.darkGray
-        
-        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -149,7 +146,6 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
         tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -168,7 +164,10 @@ class DropdownView: UIView, UITableViewDelegate, UITableViewDataSource  {
         let cell = UITableViewCell()
         
         cell.textLabel?.text = dropDownOptions[indexPath.row]
-        cell.backgroundColor = UIColor.darkGray
+        cell.textLabel?.textAlignment = .center
+        
+        cell.backgroundColor = UIColor.cyan
+        
         return cell
     }
     

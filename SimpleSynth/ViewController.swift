@@ -161,14 +161,15 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(0)
             make.right.equalTo(view).dividedBy(4)
-            make.bottom.equalTo(view).dividedBy(8)
+            make.bottom.equalTo(view).dividedBy(5)
         })
+        
         
         oscLabel2.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(0).offset(self.view.frame.height / 20)
             make.left.equalTo(oscLabel1.snp.right)
-            make.bottom.equalTo(view).dividedBy(8)
-            make.right.equalTo(view).dividedBy(2)
+            make.right.equalTo(view).dividedBy(2).inset(self.view.frame.size.width / 100)
+            make.bottom.equalTo(view).dividedBy(5)
         })
         
         oscLabel1.setTitle("OSC 1", for: .normal)
@@ -179,6 +180,7 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         
         oscLabel1.delegate1 = self
         oscLabel2.delegate2 = self
+        
         
         self.view.addSubview(octaveDown)
         octaveDown.snp.makeConstraints( { (make) -> Void in
@@ -329,12 +331,14 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         stopDaBeat()
     }
     
+    
     func stopDaBeat() {
         AudioKit.stop()
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         defaults.set(false, forKey: "beatIsPlaying")
         AudioKit.start()
     }
+    
     
     func passFirst(row: Int) {
         if row == 0 {
@@ -345,7 +349,9 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             oscLabel1.titleLabel?.textColor = UIColor.white
         }
         defaults.set(row, forKey: "osc1wave")
+        oscLabel2.titleLabel?.textColor = UIColor.black
     }
+    
     
     func passSecond(row: Int) {
         if row == 0 {
@@ -353,7 +359,7 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             oscLabel2.titleLabel?.textColor = UIColor.gray
         } else {
             setWaveform(forBank: 2, waveformIndex: row)
-            oscLabel2.titleLabel?.textColor = UIColor.white
+            oscLabel2.titleLabel?.textColor = UIColor.black
         }
         defaults.set(row, forKey: "osc2wave")
     }
