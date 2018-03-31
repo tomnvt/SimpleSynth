@@ -178,9 +178,7 @@ class ChooseBeatViewController: UIViewController {
     }
     
     @objc fileprivate func backButtonPressed(sender: UIButton) {
-        let vc = ViewController()
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
         if !defaults.bool(forKey: "beatIsPlaying") {
             beat.drums?.stop()
         }

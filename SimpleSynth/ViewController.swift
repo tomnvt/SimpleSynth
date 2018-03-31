@@ -89,6 +89,8 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     
     override func viewDidLoad() {
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.black
@@ -321,9 +323,8 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     
     
     @objc fileprivate func chooseBeatButtonPressed(sender: UIButton) {
-        let vc = ChooseBeatViewController()
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChooseBeatViewController") as! ChooseBeatViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -346,7 +347,7 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             oscLabel1.titleLabel?.textColor = UIColor.gray
         } else {
             setWaveform(forBank: 1, waveformIndex: row)
-            oscLabel1.titleLabel?.textColor = UIColor.white
+            oscLabel1.titleLabel?.textColor = UIColor.black
         }
         defaults.set(row, forKey: "osc1wave")
         oscLabel2.titleLabel?.textColor = UIColor.black
