@@ -329,15 +329,15 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        stopDaBeat()
+        AudioKit.stop()
+        AudioKit.start()
     }
     
     
     func stopDaBeat() {
-        AudioKit.stop()
+        beat.drums?.pause()
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         defaults.set(false, forKey: "beatIsPlaying")
-        AudioKit.start()
     }
     
     
