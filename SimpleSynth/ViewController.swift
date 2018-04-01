@@ -95,8 +95,6 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         
         self.view.backgroundColor = UIColor.black
         
-        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
-        
         self.view.addSubview(beatOnOff)
         
         self.view.addSubview(chooseBeatButton)
@@ -245,14 +243,17 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         })
         chooseBeatButton.addTarget(self, action: #selector(chooseBeatButtonPressed(sender:)), for: .touchDown)
         
-        routeAudio(synth: synth, beat: beat)
-        
         if defaults.bool(forKey: "beatIsPlaying") {
             beatOnOff.setTitle("Beat: ON", for: .normal)
         } else {
             beatOnOff.setTitle("Beat: OFF", for: .normal)
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+        routeAudio(synth: synth, beat: beat)
     }
     
     func noteOn(note: MIDINoteNumber) {
@@ -335,7 +336,7 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     
     
     func stopDaBeat() {
-        beat.drums?.pause()
+        beat.drums?.stop()
         beatOnOff.setTitle("Beat: OFF", for: .normal)
         defaults.set(false, forKey: "beatIsPlaying")
     }

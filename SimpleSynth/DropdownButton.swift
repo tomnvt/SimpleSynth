@@ -28,6 +28,7 @@ protocol PassSecondRowDelegate {
 class DropdownButton: UIButton, FirstDropdownProtocol, SecondDropdownProtocol {
     
     let synth = Synth()
+    let beat = Beat()
     
     func firstDropdownPressed(row: Int) {
         self.delegate1?.passFirst(row: row)
