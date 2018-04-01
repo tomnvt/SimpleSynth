@@ -20,6 +20,9 @@ class ChooseBeatViewController: UIViewController {
         button.setTitle("Back", for: .normal)
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -29,6 +32,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 0
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -38,6 +44,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 1
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -47,6 +56,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 2
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -56,6 +68,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 3
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -65,6 +80,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 4
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -74,6 +92,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 5
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -83,6 +104,9 @@ class ChooseBeatViewController: UIViewController {
         button.backgroundColor = UIColor.cyan
         button.setTitleColor(UIColor.black, for: .normal)
         button.tag = 6
+        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
         return button
     }()
     
@@ -108,58 +132,63 @@ class ChooseBeatViewController: UIViewController {
         view.addSubview(dnbBeat2Button)
         
         backButton.snp.makeConstraints( { (make) in
-            make.top.left.equalToSuperview()
-            make.right.equalToSuperview().dividedBy(2)
-            make.bottom.equalToSuperview().dividedBy(5)
+            make.top.equalTo(view.snp.top).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().dividedBy(2).inset(8)
+            make.height.equalToSuperview().dividedBy(5)
         })
         
         defaultBeatButton.snp.makeConstraints( { (make) in
-            make.top.right.equalToSuperview()
-            make.left.equalTo(backButton.snp.right)
-            make.bottom.equalToSuperview().dividedBy(5)
+            make.top.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(16)
+            make.left.equalTo(backButton.snp.right).offset(16)
+            make.height.equalToSuperview().dividedBy(5)
         })
         
         houserBeat1Button.snp.makeConstraints( { (make) in
-            make.left.equalToSuperview()
-            make.top.equalTo(backButton.snp.bottom).offset(1)
-            make.right.equalToSuperview().dividedBy(2)
+            make.top.equalTo(backButton.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().dividedBy(2).inset(8)
             make.height.equalToSuperview().dividedBy(5)
         })
         
         houserBeat2Button.snp.makeConstraints( { (make) in
-            make.top.equalTo(backButton.snp.bottom).offset(1)
-            make.left.equalTo(houserBeat1Button.snp.right)
-            make.right.equalToSuperview()
+            make.top.equalTo(backButton.snp.bottom).offset(16)
+            make.left.equalTo(backButton.snp.right).offset(16)
+            make.right.equalToSuperview().inset(16)
             make.height.equalToSuperview().dividedBy(5)
         })
         
         hiphopBeat1Button.snp.makeConstraints( { (make) in
-            make.left.equalToSuperview()
-            make.top.equalTo(houserBeat1Button.snp.bottom)
-            make.right.equalToSuperview().dividedBy(2)
+            make.top.equalTo(houserBeat1Button.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().dividedBy(2).inset(8)
             make.height.equalToSuperview().dividedBy(5)
         })
         
         hiphopBeat2Button.snp.makeConstraints( { (make) in
-            make.left.equalTo(houserBeat1Button.snp.right)
-            make.top.equalTo(houserBeat1Button.snp.bottom)
-            make.right.equalToSuperview()
+            make.top.equalTo(houserBeat1Button.snp.bottom).offset(16)
+            make.left.equalTo(backButton.snp.right).offset(16)
+            make.right.equalToSuperview().inset(16)
             make.height.equalToSuperview().dividedBy(5)
         })
         
         dnbBeat1Button.snp.makeConstraints( { (make) in
-            make.left.equalToSuperview()
-            make.top.equalTo(hiphopBeat2Button.snp.bottom)
-            make.right.equalToSuperview().dividedBy(2)
+            make.top.equalTo(hiphopBeat2Button.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().dividedBy(2).inset(8)
             make.height.equalToSuperview().dividedBy(5)
         })
         
         dnbBeat2Button.snp.makeConstraints( { (make) in
-            make.left.equalTo(houserBeat1Button.snp.right)
-            make.top.equalTo(hiphopBeat2Button.snp.bottom)
-            make.right.equalToSuperview()
+            make.top.equalTo(hiphopBeat2Button.snp.bottom).offset(16)
+            make.left.equalTo(backButton.snp.right).offset(16)
+            make.right.equalToSuperview().inset(16)
             make.height.equalToSuperview().dividedBy(5)
         })
+        
+        backButton.layer.cornerRadius = 0.5 * backButton.bounds.size.width
+        backButton.clipsToBounds = true
         
         backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
         defaultBeatButton.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
@@ -169,6 +198,10 @@ class ChooseBeatViewController: UIViewController {
         hiphopBeat2Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
         dnbBeat1Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
         dnbBeat2Button.addTarget(self, action: #selector(beatButtonPressed(sender:)), for: .touchDown)
+        
+        let button = [defaultBeatButton, houserBeat1Button, houserBeat2Button, hiphopBeat1Button, hiphopBeat2Button, dnbBeat1Button, dnbBeat2Button]
+        
+        button[defaults.integer(forKey: "beatFileNumber")].titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.00)
         
     }
     
@@ -190,8 +223,11 @@ class ChooseBeatViewController: UIViewController {
     }
     
     @objc fileprivate func beatButtonPressed(sender: UIButton) {
+        let button = [defaultBeatButton, houserBeat1Button, houserBeat2Button, hiphopBeat1Button, hiphopBeat2Button, dnbBeat1Button, dnbBeat2Button]
+        button[defaults.integer(forKey: "beatFileNumber")].titleLabel?.font = UIFont.systemFont(ofSize: 17.00)
         defaults.set(sender.tag, forKey: "beatFileNumber")
         changeDrums(newFile: beat.beatFiles[sender.tag])
+        button[defaults.integer(forKey: "beatFileNumber")].titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.00)
     }
     
 }
