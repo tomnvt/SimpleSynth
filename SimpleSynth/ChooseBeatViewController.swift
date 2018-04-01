@@ -9,6 +9,10 @@
 import UIKit
 import AudioKit
 
+protocol ChangeBeatDelegate {
+    func changeBeat()
+}
+
 class ChooseBeatViewController: UIViewController {
 
     var backButton: UIButton = {
@@ -87,6 +91,7 @@ class ChooseBeatViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
+    var delegate : ChangeBeatDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,7 +174,7 @@ class ChooseBeatViewController: UIViewController {
     
     func changeDrums(newFile: String) {
         AudioKit.stop()
-        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+        delegate?.changeBeat()
         routeAudio(synth: synth, beat: beat)
         if defaults.bool(forKey: "beatIsPlaying") {
             beat.drums?.looping = true

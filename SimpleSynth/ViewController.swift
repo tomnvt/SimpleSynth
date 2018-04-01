@@ -12,7 +12,7 @@ import AudioKitUI
 import SnapKit
 
 
-class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate, PassSecondRowDelegate {
+class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate, PassSecondRowDelegate, ChangeBeatDelegate {
 
     // Numeric variables
     var octave = 3
@@ -85,7 +85,6 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     let beat = Beat()
     
     let defaults = UserDefaults.standard
-    
     
     override func viewDidLoad() {
         
@@ -234,7 +233,6 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         })
         beatOnOff.addTarget(self, action: #selector(beatOnOff(sender:)), for: .touchDown)
         
-        
         chooseBeatButton.snp.makeConstraints( { (make) -> Void in
             make.top.equalTo(beatOnOff.snp.bottom)
             make.left.equalTo(polyphonicButton.snp.right)
@@ -249,10 +247,12 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             beatOnOff.setTitle("Beat: OFF", for: .normal)
         }
         
+        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+//        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
         routeAudio(synth: synth, beat: beat)
     }
     
@@ -325,6 +325,7 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
     
     @objc fileprivate func chooseBeatButtonPressed(sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChooseBeatViewController") as! ChooseBeatViewController
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -364,6 +365,12 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
             oscLabel2.titleLabel?.textColor = UIColor.black
         }
         defaults.set(row, forKey: "osc2wave")
+    }
+    
+    func changeBeat() {
+        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
+        routeAudio(synth: synth, beat: beat)
+        beat.drums?.play()
     }
     
 }
