@@ -248,13 +248,9 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         }
         
         beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
         routeAudio(synth: synth, beat: beat)
     }
+    
     
     func noteOn(note: MIDINoteNumber) {
         synth.bank1.play(noteNumber: note, velocity: 80)
@@ -366,13 +362,16 @@ class ViewController: UIViewController, AKKeyboardDelegate, PassFirstRowDelegate
         }
         defaults.set(row, forKey: "osc2wave")
     }
-    
+
     func changeBeat() {
         beat.drums = beat.getDrums(file: beat.beatFiles[defaults.integer(forKey: "beatFileNumber")])
         routeAudio(synth: synth, beat: beat)
+        if defaults.bool(forKey: "beatIsPlaying") {
+            beat.drums?.looping = true
+        }
         beat.drums?.play()
     }
-    
+
 }
 
 extension UIViewController {

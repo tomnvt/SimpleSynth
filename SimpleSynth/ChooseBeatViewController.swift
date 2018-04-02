@@ -208,11 +208,6 @@ class ChooseBeatViewController: UIViewController {
     func changeDrums(newFile: String) {
         AudioKit.stop()
         delegate?.changeBeat()
-        routeAudio(synth: synth, beat: beat)
-        if defaults.bool(forKey: "beatIsPlaying") {
-            beat.drums?.looping = true
-        }
-        beat.drums?.play()
     }
     
     @objc fileprivate func backButtonPressed(sender: UIButton) {
